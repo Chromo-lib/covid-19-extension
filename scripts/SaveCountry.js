@@ -17,17 +17,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     else {
       inputContainer.classList.remove('dip-none');
-      inputContainer.classList.add('d-flex-col-center');      
+      inputContainer.classList.add('d-flex-col-center');
     }
   }
 
-  function saveCountry() {
+  function saveCountry () {
     let inputVal = document.getElementById('input-country');
     chrome.storage.sync.set({ country: inputVal.value }, () => { });
   }
 
   btnSave.addEventListener('click', saveCountry, false);
   btnClose && btnClose.addEventListener('click', openHideModal, false);
-  btnSetCountry.addEventListener('click', openHideModal, false);
+  btnSetCountry && btnSetCountry.addEventListener('click', openHideModal, false);
 });
 
