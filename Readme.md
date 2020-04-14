@@ -1,7 +1,8 @@
-### WeatherNow: Get the Weather of your city
+### CovidNow: 
+Covid19 Cases and Deaths by Country chrome extension.
 
 ### Capture
-![WeatherNow](w-extension.PNG)
+![covid19](covid-extension.PNG)
 
 ### License
 MIT
