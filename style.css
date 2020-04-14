@@ -1,0 +1,168 @@
+body {
+  margin: 0;
+  background-color: #3c3c3c;
+  color: #fff;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-image: linear-gradient(rgba(23, 27, 29, 0.822), rgba(18, 19, 20, 0.92)), url(covid.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: auto;
+}
+
+.container {
+  width: 420px;
+  max-height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  overflow: auto;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  width: 64px;
+  height: 34px !important;
+  object-fit: cover;
+}
+
+.desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.details {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  margin-bottom: 10px !important;
+  border-top: 1px solid #343438;
+  padding-top: 10px;
+  font-size: 10px;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.d-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.cl-blue-sky {
+  color: #56a0ee !important;
+}
+
+
+/**/
+.tabs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+button {
+  border: 0;
+  padding: 2px 10px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #236cff !important;
+}
+
+.tabs-items {
+  max-height: 90%;
+}
+
+.tabs button {
+  width: 100%;
+  padding: 10px;
+  background-color: inherit;
+  border: 1px solid rgb(64, 84, 94);
+}
+
+#btn-load-more {
+  background-color: #1f1f1f;
+  font-size: 10px;
+  padding: 10px;
+  width: 100%;
+  letter-spacing: 2px;
+  display: none;
+}
+
+.dip-none {
+  display: none;
+}
+
+/***/
+
+.m-0 {
+  margin: 0 !important;
+}
+
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+.mb-10 {
+  margin-bottom: 10px !important;
+}
+
+.mb-5 {
+  margin-bottom: 5px !important;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 64px;
+}
+
+.scale:hover {
+  transform: scale(1.2);
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #474141;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #2b2929;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #236cff;
+}

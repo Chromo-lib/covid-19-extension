@@ -1,0 +1,14 @@
+{
+  "name": "CovidNow",
+  "version": "0.0.1",
+  "description": "Covid19 Cases and Deaths by Country",
+  "manifest_version": 2,
+  "permissions": [
+    "storage"
+  ],
+  "browser_action": {
+    "default_title": "CovidNow",
+    "default_popup": "popup.html",
+    "default_icon": {}
+  }
+}
