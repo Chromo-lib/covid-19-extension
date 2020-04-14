@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>CovidNow - Covid19 Cases and Deaths by Country</title>
   <link rel="stylesheet" href="style.css">
 
 </head>
@@ -15,8 +15,19 @@
 
   <div class="container">
 
+    <button id="set-country">C</button>
+
+    <div class="input-container dip-none">
+      <input type="text" name="input-country" id="input-country" class="mb-10" placeholder="Enter your country name"
+        required>
+      <div>
+        <button class="btn-save bg-bleu p-10 mr-10">save</button>
+      <button class="btn-close bg-red p-10">close</button>
+      </div>
+    </div>
+
     <div class="tabs">
-      <button id="country">C</button id="country">
+      <button id="country">C</button>
       <button id="countries">A</button>
     </div>
 
@@ -24,7 +35,7 @@
       <ul id="list" class="list-group box" data-id="country"></ul>
       <ul id="list-d" class="list-group box dip-none" data-id="countries"></ul>
     </div>
-    <button id="btn-load-more">LOAD MORE</button>    
+    <button id="btn-load-more">LOAD MORE</button>
   </div>
 
   <script src="scripts/util.js"></script>
@@ -32,6 +43,7 @@
 
   <script src="scripts/Item.js"></script>
   <script src="scripts/CovidService.js"></script>
+  <script src="scripts/SaveCountry.js"></script>
   <script src="scripts/popup.js" type="text/javascript" defer></script>
 </body>
 
