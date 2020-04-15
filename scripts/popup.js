@@ -1,4 +1,12 @@
-document.addEventListener('DOMContentLoaded', function () {
+import Tabs from './tab';
+import SaveCountry from './SaveCountry';
+import CovidService from './CovidService';
+import { Item, Header } from './Dom';
+
+export default (() => {
+
+  Tabs(); // handling tabs
+  SaveCountry(); // popup save country name
 
   let countryName = 'tunisia';
   let countries = [];
@@ -42,4 +50,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.getElementById('countries').addEventListener('click', getAllCountries, false);
   btnLoadMore && btnLoadMore.addEventListener('click', getAllCountries, false);
-});
+})();

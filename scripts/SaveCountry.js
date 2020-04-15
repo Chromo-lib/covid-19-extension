@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+export default function SaveCountry () {
 
   let btnSetCountry = document.getElementById('set-country');
   let btnSave = document.querySelector('.btn-save');
@@ -29,5 +29,4 @@ document.addEventListener('DOMContentLoaded', function () {
   btnSave.addEventListener('click', saveCountry, false);
   btnClose && btnClose.addEventListener('click', openHideModal, false);
   btnSetCountry && btnSetCountry.addEventListener('click', openHideModal, false);
-});
-
+}

@@ -1,4 +1,6 @@
-function Header(country, date) {
+import formatNumber from './util';
+
+export function Header(country, date) {
   return `
     <h3 class="m-0">${country}</h3>
     <small class="mb-10">${new Date(date).toString().slice(0, 15)}</small> 
@@ -6,7 +8,7 @@ function Header(country, date) {
   `;
 }
 
-function Item(resp) {
+export function Item(resp) {
   return `   
   <div class="details">
 
@@ -17,27 +19,27 @@ function Item(resp) {
 
     <div class="d-flex-column">
       <span class="cl-blue-sky">Total Cases</span>
-      <span class="scale">${formatNumer(resp.cases)}</span>
+      <span class="scale">${formatNumber(resp.cases)}</span>
     </div>
 
     <div class="d-flex-column">
       <span class="cl-blue-sky">total deaths</span>
-      <span class="scale">${formatNumer(resp.deaths)}</span>
+      <span class="scale">${formatNumber(resp.deaths)}</span>
     </div>
 
     <div class="d-flex-column">
       <span class="cl-blue-sky">today Cases</span>
-      <span class="scale">${formatNumer(resp.todayCases)}</span>
+      <span class="scale">${formatNumber(resp.todayCases)}</span>
     </div>
 
     <div class="d-flex-column">
       <span class="cl-blue-sky">today Deaths</span>
-      <span class="scale">${formatNumer(resp.todayDeaths)}</span>
+      <span class="scale">${formatNumber(resp.todayDeaths)}</span>
     </div>
 
     <div class="d-flex-column">
       <span class="cl-blue-sky">Total recovered</span>
-      <span class="scale">${formatNumer(resp.recovered)}</span>
+      <span class="scale">${formatNumber(resp.recovered)}</span>
     </div>
       
     </div>`
