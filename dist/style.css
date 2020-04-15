@@ -26,6 +26,7 @@ body {
 ul {
   margin: 0;
   padding: 0;
+  margin-top: 15px;
 }
 
 img {
@@ -96,6 +97,7 @@ button:hover {
 }
 
 .tabs-items {
+  width: 100%;
   max-height: 90%;
 }
 
@@ -124,7 +126,7 @@ button:hover {
   width: 40px;
   position: absolute !important;
   top: 0;
-  left: 61px;
+  left: 91px;
 }
 
 .input-container {
@@ -157,6 +159,8 @@ input {width: 70%; padding: 7px 15px;}
   margin: 10px !important;
 }
 
+.mb-0{margin-bottom: 0 !important;}
+
 .mt-0 {
   margin-top: 0 !important;
 }
@@ -181,6 +185,8 @@ input {width: 70%; padding: 7px 15px;}
 .scale:hover {
   transform: scale(1.2);
 }
+
+.cl-rose {color: #e91e63 !important;}
 
 .bg-bleu {background-color: #2196F3;}
 .bg-red {background-color: rgb(255, 30, 30);}

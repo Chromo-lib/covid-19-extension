@@ -1,7 +1,7 @@
 import Tabs from './tab';
 import SaveCountry from './SaveCountry';
 import CovidService from './CovidService';
-import { Item, Header } from './Dom';
+import { Item, Header, StatsElements } from './Dom';
 
 export default (() => {
 
@@ -48,6 +48,28 @@ export default (() => {
     }
   }
 
+  async function stats () {
+    nbCountries = nbCountries + 10;
+    try {
+      countries = await CovidService('');
+      let statsEl = document.getElementById('list-stats');
+      statsEl.innerHTML = Header('Statistics', countries[0].updated);
+
+      const totalTodayCases = countries.reduce((a, c) => a + c.todayCases, 0);
+      const totalTodayDeaths = countries.reduce((a, c) => a + c.todayDeaths, 0);
+
+      const totalCases = countries.reduce((a, c) => a + c.cases, 0);
+      const totalDeaths = countries.reduce((a, c) => a + c.deaths, 0);
+      const totalRecovered = countries.reduce((a, c) => a + c.recovered, 0);
+
+      statsEl.innerHTML += StatsElements(totalTodayCases, totalTodayDeaths, totalCases, totalDeaths, totalRecovered);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  document.getElementById('stats').addEventListener('click', stats, false);
   document.getElementById('countries').addEventListener('click', getAllCountries, false);
   btnLoadMore && btnLoadMore.addEventListener('click', getAllCountries, false);
 })();

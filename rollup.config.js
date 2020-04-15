@@ -1,8 +1,8 @@
 import { terser } from 'rollup-plugin-terser';
 
-export default [{ input: 'popup.js', },
+export default [{ input: 'scripts/popup.js', },
 {
-  input: 'popup.js',
+  input: 'scripts/popup.js',
   output: [
     {
       name: 'covid',
