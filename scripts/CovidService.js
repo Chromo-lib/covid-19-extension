@@ -1,4 +1,4 @@
-const BASE_URL = 'https://corona.lmao.ninja/countries';
+const BASE_URL = 'https://corona.lmao.ninja/v2/countries';
 
 export default async function CovidService (country = 'tunisia') {
   try {
