@@ -4,7 +4,7 @@
   "description": "Covid19 Cases and Deaths by Country chrome extension.",
   "main": "rollup.config.js",
   "scripts": {
-    "build": "rollup --config"
+    "build": "rollup -w -c rollup.config.js"
   },
   "repository": {
     "type": "git",

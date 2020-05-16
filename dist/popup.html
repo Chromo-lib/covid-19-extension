@@ -7,27 +7,27 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>CovidNow - Covid19 Cases and Deaths by Country</title>
   <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
-  <button id="set-country">S</button>
+  <button id="set-country">+</button>
 
   <div class="container">
 
     <div class="input-container dip-none">
       <label for="input-country" class="mb-10">Your Country name</label>
       <input type="text" name="input-country" id="input-country" class="mb-10" placeholder="Example: tunisia" required>
+      <small class="mb-10">Don't forget to reload the application after save!</small>
       <div>
         <button class="btn-save bg-bleu p-10 mr-10">save</button>
-        <button class="btn-close bg-red p-10">X</button>
+        <button class="btn-close bg-red p-10">X Close</button>
       </div>
     </div>
 
     <div class="tabs">
       <button id="country">C</button>
       <button id="countries">A</button>
-      <button id="stats">S</button>
+      <button id="stats">%</button>
     </div>
 
     <div class="tabs-items">
@@ -35,10 +35,12 @@
       <ul id="list-d" class="list-group box dip-none" data-id="countries"></ul>
       <ul id="list-stats" class="list-group box dip-none" data-id="stats"></ul>
     </div>
+
     <button id="btn-load-more">LOAD MORE</button>
   </div>
 
 
   <script src="popup.js" type="text/javascript" defer></script>
 </body>
+
 </html>

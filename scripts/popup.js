@@ -11,7 +11,9 @@ export default (() => {
   let countryName = 'tunisia';
   let countries = [];
   let nbCountries = 0; // number of countries to be fetched first time
+  // countries section: event handling
   let btnLoadMore = document.getElementById('btn-load-more');
+
 
   chrome.storage.sync.get(['country'], async (result) => {
     if (result && result.country) countryName = result.country;
@@ -43,9 +45,8 @@ export default (() => {
         .forEach(country => {
           listCountries.innerHTML += Item(country);
         });
-    } catch (error) {
-      console.log(error);
-    }
+
+    } catch (error) { }
   }
 
   async function stats () {
@@ -62,12 +63,18 @@ export default (() => {
       const totalDeaths = countries.reduce((a, c) => a + c.deaths, 0);
       const totalRecovered = countries.reduce((a, c) => a + c.recovered, 0);
 
-      statsEl.innerHTML += StatsElements(totalTodayCases, totalTodayDeaths, totalCases, totalDeaths, totalRecovered);
+      statsEl.innerHTML += StatsElements(
+        totalTodayCases,
+        totalTodayDeaths,
+        totalCases,
+        totalDeaths,
+        totalRecovered,
+        parseInt((totalRecovered / totalCases) * 100, 10)
+      );
 
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }
+
 
   document.getElementById('stats').addEventListener('click', stats, false);
   document.getElementById('countries').addEventListener('click', getAllCountries, false);
