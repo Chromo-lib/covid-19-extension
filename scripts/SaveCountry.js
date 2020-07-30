@@ -11,7 +11,7 @@ export default function SaveCountry () {
       inputContainer.classList.remove('d-flex-col-center');
       inputContainer.classList.add('dip-none');
 
-      chrome.storage.sync.get(['country'], function (result) {
+      currBrowser.storage.sync.get(['country'], function (result) {
         console.log('Value currently is ' + result.country);
       });
     }
@@ -23,7 +23,7 @@ export default function SaveCountry () {
 
   function saveCountry () {
     let inputVal = document.getElementById('input-country');
-    chrome.storage.sync.set({ country: inputVal.value }, () => { });
+    currBrowser.storage.sync.set({ country: inputVal.value }, () => { });
   }
 
   btnSave.addEventListener('click', saveCountry, false);

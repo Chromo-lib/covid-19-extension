@@ -3,6 +3,9 @@ import SaveCountry from './SaveCountry';
 import CovidService from './CovidService';
 import { Item, Header, StatsElements } from './Dom';
 
+let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+let currBrowser = isChrome ? chrome : browser;
+
 export default (() => {
 
   Tabs(); // handling tabs
@@ -15,12 +18,12 @@ export default (() => {
   let btnLoadMore = document.getElementById('btn-load-more');
 
 
-  chrome.storage.sync.get(['country'], async (result) => {
+  currBrowser.storage.sync.get(['country'], async (result) => {
     if (result && result.country) countryName = result.country;
     await getCountry(countryName);
   });
 
-  chrome.storage.onChanged.addListener(async (changes) => {
+  currBrowser.storage.onChanged.addListener(async (changes) => {
     await getCountry(changes.country.newValue);
   });
 
