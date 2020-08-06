@@ -66,24 +66,23 @@ export function StatsElements (
   </div>
 </div>
 
-<div class="details m-0">    
-
-  <div class="d-flex-column border-right fs-12"> 
+<div class="details m-0 fs-10">
+  <div class="d-flex-column border-right"> 
     <span class="cl-blue-sky">total cases</span>
     <p class="m-0">${formatNumber(totalCases)}</p>
   </div>
 
-  <div class="d-flex-column border-right fs-12">
+  <div class="d-flex-column border-right">
     <span class="cl-blue-sky">total deaths</span>
     <p class="m-0">${formatNumber(totalDeaths)}</p>
   </div>
 
-  <div class="d-flex-column border-right fs-12">
+  <div class="d-flex-column border-right">
     <span class="cl-blue-sky">total recovered</span>
     <p class="m-0">${formatNumber(totalRecovered)}</p>
   </div>
 
-  <div class="d-flex-column fs-12">
+  <div class="d-flex-column">
     <span class="cl-blue-sky">recovered / cases</span>
     <p class="m-0">${formatNumber(recoveredOnCases)}%</p>
   </div>

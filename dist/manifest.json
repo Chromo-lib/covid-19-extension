@@ -1,7 +1,7 @@
 {
   "name": "CovidNow",
-  "version": "0.0.1",
-  "description": "Covid19 Cases and Deaths by Country",
+  "version": "1.0.0",
+  "description": "CovidNow allowing you to track the world-wide spread of Corona virus.",
   "manifest_version": 2,
   "permissions": [
     "storage"

@@ -4,7 +4,7 @@ import CovidService from './CovidService';
 import { Item, Header, StatsElements } from './Dom';
 
 let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-let currBrowser = isChrome ? chrome : browser;
+chrome = isChrome ? chrome : browser;
 
 export default (() => {
 
@@ -18,17 +18,17 @@ export default (() => {
   let btnLoadMore = document.getElementById('btn-load-more');
 
 
-  currBrowser.storage.sync.get(['country'], async (result) => {
+  chrome.storage.sync.get(['country'], async (result) => {
     if (result && result.country) countryName = result.country;
     await getCountry(countryName);
   });
 
-  currBrowser.storage.onChanged.addListener(async (changes) => {
+  chrome.storage.onChanged.addListener(async (changes) => {
     await getCountry(changes.country.newValue);
   });
 
   async function getCountry () {
-    let resp = await CovidService(countryName)
+    let resp = await CovidService(countryName);
     let container = document.getElementById('list');
     container.innerHTML = Header(resp.country, resp.updated);
     container.innerHTML += Item(resp);
@@ -75,7 +75,7 @@ export default (() => {
         parseInt((totalRecovered / totalCases) * 100, 10)
       );
 
-    } catch (error) {}
+    } catch (error) { }
   }
 
 

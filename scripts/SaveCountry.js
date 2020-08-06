@@ -1,8 +1,17 @@
+import CovidService from './CovidService';
+
 export default function SaveCountry () {
 
   let btnSetCountry = document.getElementById('set-country');
   let btnSave = document.querySelector('.btn-save');
   let btnClose = document.querySelector('.btn-close');
+
+  chrome.storage.sync.get(['country'], async (result) => {
+    try {
+      let resp = await CovidService(result.country);
+      document.getElementById('curr-country').src = resp.countryInfo.flag;
+    } catch (error) { }
+  });
 
   function openHideModal () {
     let inputContainer = document.querySelector('.input-container');
@@ -11,7 +20,7 @@ export default function SaveCountry () {
       inputContainer.classList.remove('d-flex-col-center');
       inputContainer.classList.add('dip-none');
 
-      currBrowser.storage.sync.get(['country'], function (result) {
+      chrome.storage.sync.get(['country'], function (result) {
         console.log('Value currently is ' + result.country);
       });
     }
@@ -23,7 +32,15 @@ export default function SaveCountry () {
 
   function saveCountry () {
     let inputVal = document.getElementById('input-country');
-    currBrowser.storage.sync.set({ country: inputVal.value }, () => { });
+    chrome.storage.sync.set({ country: inputVal.value }, async () => {
+
+      try {
+        let resp = await CovidService(inputVal.value);
+        document.getElementById('curr-country').src = resp.countryInfo.flag;
+      } catch (error) {
+        chrome.storage.sync.set({ country: 'tunisia' });
+      }
+    });
   }
 
   btnSave.addEventListener('click', saveCountry, false);
