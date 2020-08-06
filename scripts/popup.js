@@ -18,7 +18,7 @@ export default (() => {
   let btnLoadMore = document.getElementById('btn-load-more');
 
 
-  chrome.storage.sync.get(['country'], async (result) => {
+  chrome.storage.local.get(['country'], async (result) => {
     if (result && result.country) countryName = result.country;
     await getCountry(countryName);
   });

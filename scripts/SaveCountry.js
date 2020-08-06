@@ -6,7 +6,7 @@ export default function SaveCountry () {
   let btnSave = document.querySelector('.btn-save');
   let btnClose = document.querySelector('.btn-close');
 
-  chrome.storage.sync.get(['country'], async (result) => {
+  chrome.storage.local.get(['country'], async (result) => {
     try {
       let resp = await CovidService(result.country);
       document.getElementById('curr-country').src = resp.countryInfo.flag;
@@ -20,7 +20,7 @@ export default function SaveCountry () {
       inputContainer.classList.remove('d-flex-col-center');
       inputContainer.classList.add('dip-none');
 
-      chrome.storage.sync.get(['country'], function (result) {
+      chrome.storage.local.get(['country'], function (result) {
         console.log('Value currently is ' + result.country);
       });
     }
@@ -32,13 +32,13 @@ export default function SaveCountry () {
 
   function saveCountry () {
     let inputVal = document.getElementById('input-country');
-    chrome.storage.sync.set({ country: inputVal.value }, async () => {
+    chrome.storage.local.set({ country: inputVal.value }, async () => {
 
       try {
         let resp = await CovidService(inputVal.value);
         document.getElementById('curr-country').src = resp.countryInfo.flag;
       } catch (error) {
-        chrome.storage.sync.set({ country: 'tunisia' });
+        chrome.storage.local.set({ country: 'tunisia' });
       }
     });
   }
