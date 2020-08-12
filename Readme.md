@@ -9,7 +9,8 @@
 </div>
 
 ## Installation
-[![Firefox Add-ons Logo](https://i.ibb.co/HdtR04Z/firefox.png)](https://addons.mozilla.org/firefox/addon/covidnow)
+- [Firefox](https://addons.mozilla.org/firefox/addon/covidnow)
+- [Edge Chromium](https://microsoftedge.microsoft.com/addons/detail/covidnow/ndohbioafkjajehnnkhflkmkmoakakda)
 
 ### Captures
 ![covid19](cov.png)
