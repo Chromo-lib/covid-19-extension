@@ -1,85 +1,98 @@
-import Tabs from './tab';
-import SaveCountry from './SaveCountry';
+import createListCountries from './util';
 import CovidService from './CovidService';
-import { Item, Header, StatsElements } from './Dom';
 
 let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 chrome = isChrome ? chrome : browser;
 
-export default (() => {
+let itemsPerLoad = 10;
 
-  Tabs(); // handling tabs
-  SaveCountry(); // popup save country name
+let allCountries = [];
+let userCountryDetails = null;
 
-  let countryName = 'tunisia';
-  let countries = [];
-  let nbCountries = 0; // number of countries to be fetched first time
-  // countries section: event handling
-  let btnLoadMore = document.getElementById('btn-load-more');
+const navTabs = document.getElementById('nav');
+const listCountriesEL = document.getElementById('list-countries');
+const formChangeCountry = document.getElementById('form-change-country');
+const btnLoadMore = document.getElementById('btn-load-more');
 
+chrome.storage.local.get(['userCountryName'], function (result) {
+  
+  initElmns({ showForm: 'none', showBtnMore: 'none' });
 
-  chrome.storage.local.get(['country'], async (result) => {
-    if (result && result.country) countryName = result.country;
-    await getCountry(countryName);
+  if (result && result.userCountryName) {
+    CovidService.fetchData(result.userCountryName).then(country => {
+      userCountryDetails = country;
+      createListCountries(listCountriesEL, country);
+    }).catch(e => {
+      chrome.storage.local.set({ userCountryName: 'tunisia' });
+    });
+  }
+  else {
+    CovidService.fetchData().then(country => {
+      userCountryDetails = country;
+      createListCountries(listCountriesEL, country);
+    }).catch(e => { });
+  }
+});
+
+navTabs.addEventListener('click', (e) => {
+  switch (e.target.id || e.target.parentNode.id) {
+    case 'all':
+      CovidService.fetchData('').then(countries => {
+        initElmns({ showForm: 'none', showBtnMore: 'block' });
+        allCountries = countries.slice(0);
+
+        countries
+          .sort((i, j) => +j.cases - +i.cases)
+          .slice(0, itemsPerLoad)
+          .forEach(countryDetails => {
+            createListCountries(listCountriesEL, countryDetails);
+          });
+
+        btnLoadMore.addEventListener('click', () => {
+          itemsPerLoad += 10;
+
+          btnLoadMore.style.display = 'block';
+          listCountriesEL.innerHTML = '';
+
+          allCountries
+            .sort((i, j) => +j.cases - +i.cases)
+            .slice(0, itemsPerLoad)
+            .forEach(countryDetails => {
+              createListCountries(listCountriesEL, countryDetails);
+            });
+        }, false);
+      });
+      break;
+
+    case 'settings':
+      initElmns({ showForm: 'block', showBtnMore: 'none' });
+
+      formChangeCountry.addEventListener('submit', (e) => {
+        e.preventDefault();
+        e.target.elements[0].disabled = true;
+        e.target.elements[1].disabled = true;
+        e.target.elements[1].textContent = 'Changed';
+        e.target.elements[1].classList.add('bg-bleu');
+        chrome.storage.local.set({ userCountryName: e.target.elements[0].value });
+      }, false);
+      break;
+
+    default:
+      initElmns({ showForm: 'none', showBtnMore: 'none' });
+      createListCountries(listCountriesEL, userCountryDetails);
+      break;
+  }
+
+  Array.from(navTabs.children).forEach(el => {
+    el.classList.remove('active-tab');
   });
 
-  chrome.storage.onChanged.addListener(async (changes) => {
-    await getCountry(changes.country.newValue);
-  });
+  if (e.target.id) e.target.classList.add('active-tab');
+  else e.target.parentNode.classList.add('active-tab');
+}, false);
 
-  async function getCountry () {
-    let resp = await CovidService(countryName);
-    let container = document.getElementById('list');
-    container.innerHTML = Header(resp.country, resp.updated);
-    container.innerHTML += Item(resp);
-  }
-
-  async function getAllCountries () {
-
-    nbCountries = nbCountries + 10;
-    try {
-      countries = await CovidService('');
-      let listCountries = document.getElementById('list-d');
-      listCountries.innerHTML = Header('All countries', countries[0].updated);
-
-      countries
-        .sort((i, j) => +j.cases - +i.cases)
-        .slice(0, nbCountries)
-        .forEach(country => {
-          listCountries.innerHTML += Item(country);
-        });
-
-    } catch (error) { }
-  }
-
-  async function stats () {
-    nbCountries = nbCountries + 10;
-    try {
-      countries = await CovidService('');
-      let statsEl = document.getElementById('list-stats');
-      statsEl.innerHTML = Header('Statistics', countries[0].updated);
-
-      const totalTodayCases = countries.reduce((a, c) => a + c.todayCases, 0);
-      const totalTodayDeaths = countries.reduce((a, c) => a + c.todayDeaths, 0);
-
-      const totalCases = countries.reduce((a, c) => a + c.cases, 0);
-      const totalDeaths = countries.reduce((a, c) => a + c.deaths, 0);
-      const totalRecovered = countries.reduce((a, c) => a + c.recovered, 0);
-
-      statsEl.innerHTML += StatsElements(
-        totalTodayCases,
-        totalTodayDeaths,
-        totalCases,
-        totalDeaths,
-        totalRecovered,
-        parseInt((totalRecovered / totalCases) * 100, 10)
-      );
-
-    } catch (error) { }
-  }
-
-
-  document.getElementById('stats').addEventListener('click', stats, false);
-  document.getElementById('countries').addEventListener('click', getAllCountries, false);
-  btnLoadMore && btnLoadMore.addEventListener('click', getAllCountries, false);
-})();
+function initElmns ({ showForm, showBtnMore }) {
+  formChangeCountry.style.display = showForm;
+  btnLoadMore.style.display = showBtnMore;
+  listCountriesEL.innerHTML = '';
+}

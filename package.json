@@ -1,7 +1,7 @@
 {
-  "name": "covid-19-extension",
-  "version": "1.0.0",
-  "description": "Covid19 Cases and Deaths by Country chrome extension.",
+  "name": "covidnow",
+  "version": "1.0.1",
+  "description": "Covid19 Cases and Deaths by Country browser extension.",
   "main": "rollup.config.js",
   "scripts": {
     "watch": "rollup -w -c rollup.config.js",

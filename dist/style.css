@@ -1,18 +1,12 @@
-@font-face {
-  font-family: 'Open Sans';
-  src: url(OpenSans-Regular.ttf);
-}
-
-* {
-  box-sizing: border-box;
-}
+@font-face {font-family: 'Open Sans';src: url(OpenSans-Regular.ttf);}
+* {  box-sizing: border-box; font-family: 'Open Sans'; scrollbar-width: thin; }
 
 body {
+  width: 450px;
   margin: 0;
   background-color: #3c3c3c;
   color: #fff;
   font-size: 12px;
-  font-family: 'Open Sans';
   position: relative;
   text-align: center;
   text-transform: uppercase;
@@ -22,246 +16,114 @@ body {
   background-size: cover;
   overflow: auto;
   overflow-x: hidden;
+  scrollbar-width: thin;
 }
 
-.container {
-  width: 540px;
-  min-height: 190px;
-  max-height: 70%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 20px;
-  overflow: auto;
+nav {
+  width: 100%;
+  background-color: #2b29296e;
+  text-align: center;
 }
+
+nav>div {width: 33.3%; padding: 10px; cursor: pointer; transition: all .25s;}
+nav>div span { font-size: 10px !important; }
+
+header {background: #0072c62b;  padding: 10px;
+  background: linear-gradient(135deg,rgb(48 57 66 / 98%),rgb(30 43 47 / 83%)),url(bg.jpg);}
+
+#root {padding: 0 10px;  scrollbar-width: thin;}
 
 ul {
   margin: 0;
   padding: 0;
-  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  overflow-wrap: break-word;
+  font-size: 9px;
+  font-weight: 100;
+  table-layout: fixed;
   scrollbar-width: thin;
 }
 
-img {
-  width: 64px;
-  height: 34px !important;
-  object-fit: cover;
-}
-
-.desc {
+li {
+  flex: 1 1 16%;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
 }
 
-.details {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0;
-  margin-bottom: 10px !important;
-  border-top: 1px solid #343438;
-  padding-top: 10px;
-  font-size: 10px;
-}
+img {width: 60px; height: 30px; object-fit: cover;}
+span , small {font-size: 8px;}
 
-.w-100 {
-  width: 100%;
-}
-
-.d-flex {
-  display: flex;
-  justify-content: space-between;
-}
-
-.d-flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.cl-blue-sky {
-  color: #56a0ee !important;
-}
-
-
-/**/
-.tabs {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  margin-bottom: 10px;
-}
+label {font-size: 14px;}
 
 button {
-  border: 0;
-  padding: 2px 10px;
-  color: #fff;
-  font-size: 12px;
-  line-height: 1;
+  width: 100%;
+  margin: 10px 0;
+  background-color: #2b29296e;
+  color:#ffffff;
+  padding: 7px;
+  font-size: 10px !important;
   text-transform: uppercase;
   cursor: pointer;
-}
-
-button:hover {
-  background-color: #236cff !important;
-}
-
-.tabs-items {
-  width: 100%;
-  max-height: 90%;
-}
-
-.tabs button,
-#set-country {
-  width: 100%;
-  padding: 5px 10px;
-  background-color: inherit;
-  border: 1px solid rgb(64, 84, 94);
-}
-
-#btn-load-more {
-  background-color: #1f1f1f;
-  font-size: 10px;
-  padding: 10px;
-  width: 100%;
   letter-spacing: 2px;
-  display: none;
+  transition: all .25s;
+  outline: none !important;
 }
 
-.dip-none {
-  display: none;
-}
+nav div:hover,button:hover { background-color: rgb(48 57 66 / 98%); }
 
-/********** stats tab *************/
-.box-stats {
-  background-color: #2d2d2dc2;
-    border: 1px solid #3a3a3a;
-  width: 100%;
-  margin-bottom: 10px;
-}
+#btn-load-more {display: none;}
 
-/*** Save country ***/
-#set-country {
-  width: 40px;
-  position: absolute !important;
-  top: 0;
-  left: 91px;
-}
+.w-100 {width: 100% !important;}
 
-.input-container {
-  background-color: #2b2929de;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: none;
-  z-index: 2;
-}
+.d-flex {display: flex;}
+.d-flex-col {display: flex; flex-direction: column;}
+.d-flex-center {display: flex; justify-content: center; align-items: center;}
 
-.d-flex-col-center {
+.justify-between {justify-content: space-between;}
+
+.txt-bleu{color: #00BCD4;}
+.bg-bleu{background-color: #00BCD4 !important;}
+.bg-red{background-color: #ce0000 !important;}
+
+.m-0 {margin: 0;}
+.mb-5 {margin-bottom: 5px;}
+.mb-10 {margin-bottom: 10px !important;}
+.mt-10 {margin-top: 10px !important;}
+
+.mr-5 {margin-right: 5px;}
+.ml-5 {margin-left: 5px;}
+
+.py-1 {padding: 8px 0;}
+
+.border-bottom {border-bottom: 1px solid #4e4e4e1e;}
+
+.box {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.truncate {
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  display:inline-block;
+  width:60px;
 }
 
-input {
-  width: 70%;
-  padding: 7px 15px;
+form {
+  display: block;
+  margin: auto;
+  padding: 20px;
 }
 
-/***/
-.w-64 {
-  min-width: 67px;
-}
+input {padding: 10px 7px}
 
-.fs-10 {font-size: 10px !important;}
-.fs-12 {font-size: 12px !important;}
+.active-tab {background-color: rgb(48 57 66 / 98%);}
 
-.m-0 {
-  margin: 0 !important;
-}
-
-.mr-0 {
-  margin: 10px !important;
-}
-
-.mr-10 {
-  margin-right: 10px !important;
-}
-
-.ml-10 {
-  margin-left: 10px !important;
-}
-
-.mb-0 {
-  margin-bottom: 0 !important;
-}
-
-.mt-0 {
-  margin-top: 0 !important;
-}
-
-.mb-10 {
-  margin-bottom: 10px !important;
-}
-
-.mb-5 {
-  margin-bottom: 5px !important;
-}
-
-.p-10 {
-  padding: 7px 15px;
-}
-
-.ellipsis {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 64px;
-}
-
-.scale:hover {
-  transform: scale(1.2);
-}
-
-.cl-rose {
-  color: #e91e63 !important;
-}
-
-.bg-bleu {
-  background-color: #2196F3;
-}
-
-.bg-red {
-  background-color: rgb(255, 30, 30);
-}
-
-.border-right {
-  padding-right: 10px;
-    border-right: 1px solid #383838;
-}
-
-::-webkit-scrollbar {
-  width: 7px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #474141;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #2b2929;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #236cff;
-}
+::-webkit-scrollbar {  width: 7px;}
+::-webkit-scrollbar-track { background: #474141;}
+::-webkit-scrollbar-thumb { background: #2b2929;}
+::-webkit-scrollbar-thumb:hover { background: #236cff;}
