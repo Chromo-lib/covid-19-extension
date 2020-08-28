@@ -1,23 +1,37 @@
-export default function createListCountries (listCountriesEL, countryDetails) {
+let headerEl = document.querySelector('header');
 
-  const ulList = document.createElement('ul');
-  ulList.innerHTML = createLiInfos(countryDetails).join('');
+export default class DomUtils {
+  // set country name to header title (H3 element)
+  static setHeader (countryName = 'tunisia') {
+    headerEl.children[0].textContent = countryName;
+    headerEl.children[1].textContent = new Date().toDateString();
+  }
 
-  const infosWrapper = document.createElement('div');
-  infosWrapper.innerHTML = createLiHeader();
-  infosWrapper.classList.add('d-flex-col');
-  infosWrapper.classList.add('justify-between');
-  infosWrapper.appendChild(ulList);
+  static hideHeader (showHeader = true) {
+    headerEl.style.display = showHeader ? 'block' : 'none';
+    showHeader
+      ? document.getElementById('root').classList.remove('mt-30')
+      : document.getElementById('root').classList.add('mt-30')
+  }
 
-  const container = document.createElement('div');
-  container.appendChild(createImg(countryDetails));
-  container.appendChild(infosWrapper);
+  static createListCountries (listCountriesEL, countryDetails) {
 
-  container.classList.add('d-flex');
-  container.classList.add('py-1');
-  container.classList.add('border-bottom');
+    const ulList = document.createElement('ul');
+    ulList.innerHTML = createLiInfos(countryDetails).join('');
 
-  listCountriesEL.appendChild(container);
+    const infosWrapper = document.createElement('div');
+    infosWrapper.innerHTML = createLiHeader();
+    infosWrapper.classList.add('d-flex-col', 'justify-between');
+    infosWrapper.appendChild(ulList);
+
+    const container = document.createElement('div');
+    container.appendChild(createImg(countryDetails));
+    container.appendChild(infosWrapper);
+
+    container.classList.add('d-flex', 'py-1', 'border-bottom');
+
+    listCountriesEL.appendChild(container);
+  }
 }
 
 function createImg (countryDetails) {

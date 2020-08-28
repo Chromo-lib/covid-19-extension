@@ -5,7 +5,7 @@ export default {
   output:
   {
     name: 'covid',
-    file: 'dist/popup.js',
+    file: 'public/popup.js',
     format: 'umd',
     plugins: [terser()]
   }
