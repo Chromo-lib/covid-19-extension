@@ -29,14 +29,12 @@ nav {
   backdrop-filter: blur(15px);
 }
 
-nav>div {width: 24.8%; padding: 10px; cursor: pointer; transition: all .25s;}
+nav>div {width: 24.8%;     height: 40px; cursor: pointer; transition: all .25s;}
 nav>div span { font-size: 10px !important; }
 
 header {  padding: 10px; background:rgb(0 0 0 / 35%);}
 
-#root {padding: 0 10px;  scrollbar-width: thin;}
-
-#tab-stats{display: none;}
+#tabs {padding: 0 10px;  scrollbar-width: thin;}
 
 p {font-size: 12px;}
 
@@ -83,8 +81,6 @@ button {
 
 nav div:hover,button:hover { background-color: #ffffff1e; }
 
-#btn-load-more {display: none;}
-
 .w-100 {width: 100% !important;}
 
 .d-flex {display: flex;}
@@ -110,7 +106,7 @@ nav div:hover,button:hover { background-color: #ffffff1e; }
 .mb-10 {margin-bottom: 10px !important;}
 .mt-10 {margin-top: 10px !important;}
 
-.mt-30 {margin-top: 35px;}
+.mt-50 {margin-top: 50px;}
 .mt-5 {margin-top: 5px;}
 .mr-5 {margin-right: 5px;}
 .ml-5 {margin-left: 5px;}
@@ -118,6 +114,8 @@ nav div:hover,button:hover { background-color: #ffffff1e; }
 .py-1 {padding: 8px 0;}
 
 .fs-22 {font-size: 22px !important;}
+
+.disp-none {display: none;}
 
 .border-bottom {border-bottom: 1px solid #4e4e4e1e;}
 
@@ -163,6 +161,15 @@ input {padding: 10px 7px}
   .ct-series-b .ct-slice-pie {fill: #ff0e0e !important;}
 
   .ct-label {   fill: rgb(255 255 255) !important;}
+
+  input[type="search"] {
+    width:100%;
+    background: #272727 !important;
+    color: #fff !important;
+    border: 0;
+    margin-top: 10px;
+    outline: none !important;
+  }
 
 ::-webkit-scrollbar {  width: 7px;}
 ::-webkit-scrollbar-track { background: #474141;}
