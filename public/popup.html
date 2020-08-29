@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>CovidNow - Covid19 Cases and Deaths by Country</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="chart.css">
 </head>
 
 <body>
@@ -40,7 +41,7 @@
     <div id="list-countries"></div>
     <button id="btn-load-more">Load More</button>
 
-    <ul id="tab-stats" class="w-100 d-flex-col flex-start py-1"></ul>
+    <div id="tab-stats" class="w-100 d-flex-col flex-start py-1 mt-10"></div>
 
     <form id="form-change-country">
       <label>Change home country:</label>
@@ -56,6 +57,7 @@
     </form>    
   </div>
 
+  <script src="chart.js"></script>
   <script src="popup.js" type="text/javascript" defer></script>
 </body>
 

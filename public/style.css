@@ -94,8 +94,11 @@ nav div:hover,button:hover { background-color: #ffffff1e; }
 
 .txt-bleu{color: #00BCD4;}
 .txt-muted {color:#9e9e9e;}
+.txt-green {color:#8bc34a !important;}
+.txt-red {color:#ff0e0e !important;}
+
 .bg-bleu{background-color: #00BCD4 !important;}
-.bg-red{background-color: #ce0000 !important;}
+.bg-red{background-color: #ff0e0e !important;}
 
 .m-0 {margin: 0;}
 .mb-0 {margin-bottom: 0;}
@@ -110,6 +113,8 @@ nav div:hover,button:hover { background-color: #ffffff1e; }
 .ml-5 {margin-left: 5px;}
 
 .py-1 {padding: 8px 0;}
+
+.fs-22 {font-size: 22px !important;}
 
 .border-bottom {border-bottom: 1px solid #4e4e4e1e;}
 
@@ -139,11 +144,22 @@ input {padding: 10px 7px}
 
 .alert {
   display: none;
-  background: #ce0000 !important;
+  background: #ff0e0e !important;
     padding: 5px 10px !important;
     font-size: 10px !important;
     width: 100% !important;
 }
+
+.li-bordred {    border: 1px solid #4a494ca3;
+  padding: 7px;
+  font-size: 14px !important;}
+  .li-bordred,.li-bordred>*,.ct-chart {transform: none !important;}
+  .li-bordred span {font-size: 10px !important;}
+
+  .ct-series-a .ct-slice-pie {fill: #ffffff !important;}
+  .ct-series-b .ct-slice-pie {fill: #ff0e0e !important;}
+
+  .ct-label {   fill: rgb(255 255 255) !important;}
 
 ::-webkit-scrollbar {  width: 7px;}
 ::-webkit-scrollbar-track { background: #474141;}

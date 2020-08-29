@@ -114,17 +114,48 @@ function initElmns ({ showHeader, showForm, showBtnMore, showStatsTabEl }) {
 function setStatsTab () {
   let totalCases = allCountries.reduce((a, c) => a + c.cases, 0);
   let totalDeaths = allCountries.reduce((a, c) => a + c.deaths, 0);
+  let totalRecovered = allCountries.reduce((a, c) => a + c.recovered, 0);
+
+  let deathsCases = parseInt((totalDeaths / totalCases) * 100, 10);
+  let recoveredCases = parseInt((totalRecovered / totalCases) * 100, 10);
+
+  let todayCases = allCountries.reduce((a, c) => a + c.todayCases, 0);
+  let todayDeaths = allCountries.reduce((a, c) => a + c.todayDeaths, 0);
+  let todayRecovered = allCountries.reduce((a, c) => a + c.todayRecovered, 0);
 
   statsTabEl.innerHTML = `
-  <ul>
-  <li class="d-flex-col"><span class="txt-bleu mb-5">total cases</span> ${totalCases}</li>
-  <li class="d-flex-col"><span class="txt-bleu mb-5">total deaths</span> ${totalDeaths}</li>
+  <ul class="w-100">
+  <li class="d-flex-col li-bordred"><span class="txt-bleu mb-5">total today cases</span> ${DomUtils.formatNumber(todayCases)}</li>
+  <li class="d-flex-col li-bordred"><span class="txt-bleu mb-5">total today cases</span> ${DomUtils.formatNumber(todayDeaths)}</li>
+  <li class="d-flex-col li-bordred"><span class="txt-bleu mb-5">total today Recovered</span> ${DomUtils.formatNumber(todayRecovered)}</li>
   </ul>
-  <ul>
-  <li class="d-flex-col"><span class="txt-bleu mb-5">total today cases</span> ${allCountries.reduce((a, c) => a + c.todayCases, 0)}</li>
-  <li class="d-flex-col"><span class="txt-bleu mb-5">total today cases</span> ${allCountries.reduce((a, c) => a + c.todayDeaths, 0)}</li>
-  <li class="d-flex-col"><span class="txt-bleu mb-5">total deaths/total cases</span> ${parseInt((totalDeaths / totalCases) * 100, 10)}%</li>
+
+  <ul class="w-100">
+  <li class="d-flex-col li-bordred"><span class="txt-bleu mb-5">total cases</span> ${DomUtils.formatNumber(totalCases)}</li>
+  <li class="d-flex-col li-bordred"><span class="txt-bleu mb-5">total deaths</span> ${DomUtils.formatNumber(totalDeaths)}</li>
+  <li class="d-flex-col li-bordred"><span class="txt-bleu mb-5">total Recovered</span> ${DomUtils.formatNumber(totalRecovered)}</li>  
+  </ul>
+  
+  <ul class="w-100">
+    <li class="li-bordred d-flex-col">
+      <div class="ct-chart ct-perfect-fourth"></div>
+      <span>total Recovered ${DomUtils.formatNumber(totalRecovered)}</span>
+      <span class="txt-red">total Deaths ${DomUtils.formatNumber(totalDeaths)}</span>
+    </li>
+    <li class="li-bordred d-flex-col">
+      <div class="ct-chartt ct-perfect-fourth"></div>
+      <span>today Recovered ${DomUtils.formatNumber(todayRecovered)}</span>
+      <span class="txt-red">today Deaths ${DomUtils.formatNumber(todayDeaths)}</span>
+    </li>
+  </ul>
+  
+  <ul class="w-100">
+  <li class="d-flex-col li-bordred"><span class="txt-bleu mb-5">total deaths/<br >total cases</span> ${deathsCases}%</li>
+  <li class="d-flex-col li-bordred"><span class="txt-bleu mb-5">total Recovered/<br >total cases</span> ${recoveredCases}%</li>
   </ul>`;
+
+  new Chartist.Pie('.ct-chart', { series: [totalRecovered, totalDeaths] }, { showLabel: false });
+  new Chartist.Pie('.ct-chartt', { series: [todayRecovered, todayDeaths] }, { showLabel: false });
 }
 
 function createTabAll () {

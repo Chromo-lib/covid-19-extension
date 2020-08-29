@@ -5,3 +5,5 @@ build/
 .cache
 dist.zip
 yarn.lock
+
+package-lock.json
