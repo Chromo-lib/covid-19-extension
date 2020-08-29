@@ -124,7 +124,7 @@ function setStatsTab () {
   let todayRecovered = allCountries.reduce((a, c) => a + c.todayRecovered, 0);
 
   statsTabEl.innerHTML = `
-  <ul class="w-100">
+  <ul class="w-100 bg-dark-transp">
   <li class="d-flex-col li-bordred"><span class="txt-bleu mb-5">total today cases</span> ${DomUtils.formatNumber(todayCases)}</li>
   <li class="d-flex-col li-bordred"><span class="txt-bleu mb-5">total today cases</span> ${DomUtils.formatNumber(todayDeaths)}</li>
   <li class="d-flex-col li-bordred"><span class="txt-bleu mb-5">total today Recovered</span> ${DomUtils.formatNumber(todayRecovered)}</li>
@@ -136,7 +136,7 @@ function setStatsTab () {
   <li class="d-flex-col li-bordred"><span class="txt-bleu mb-5">total Recovered</span> ${DomUtils.formatNumber(totalRecovered)}</li>  
   </ul>
   
-  <ul class="w-100">
+  <ul class="w-100 bg-dark-transp">
     <li class="li-bordred d-flex-col">
       <div class="ct-chart ct-perfect-fourth"></div>
       <span>total Recovered ${DomUtils.formatNumber(totalRecovered)}</span>

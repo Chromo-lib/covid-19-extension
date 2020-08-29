@@ -36,6 +36,8 @@ header {  padding: 10px; background:rgb(0 0 0 / 35%);}
 
 #root {padding: 0 10px;  scrollbar-width: thin;}
 
+#tab-stats{display: none;}
+
 p {font-size: 12px;}
 
 ul {
@@ -99,6 +101,7 @@ nav div:hover,button:hover { background-color: #ffffff1e; }
 
 .bg-bleu{background-color: #00BCD4 !important;}
 .bg-red{background-color: #ff0e0e !important;}
+.bg-dark-transp {background-color:#00000099 !important;}
 
 .m-0 {margin: 0;}
 .mb-0 {margin-bottom: 0;}
