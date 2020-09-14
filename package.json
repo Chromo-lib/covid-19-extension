@@ -1,27 +1,39 @@
 {
-  "name": "covidnow",
-  "version": "1.0.1",
-  "description": "Covid19 Cases and Deaths by Country browser extension.",
-  "main": "rollup.config.js",
-  "scripts": {
-    "watch": "rollup -w -c rollup.config.js",
-    "build": "rollup -c rollup.config.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Chromo-lib/covid-19-extension.git"
-  },
-  "author": "Haikel Fazzani",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Chromo-lib/covid-19-extension/issues"
-  },
-  "homepage": "https://github.com/Chromo-lib/covid-19-extension#readme",
-  "devDependencies": {
-    "rollup": "^2.6.1",
-    "rollup-plugin-terser": "^5.3.0"
-  },
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "chart.js": "^2.9.3"
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.3",
+    "typescript": "~3.7.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

@@ -1,0 +1,51 @@
+.inline-list {
+  width: 100%;
+  min-height: 47px;
+  font-size: 12px;
+  overflow: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.inline-list li {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  word-break: break-word;
+  padding: 8px 0;
+}
+
+.inline-list li>div {
+  width: 20%;
+  max-width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inline-list li>div span {
+  width: 100%;
+}
+
+.inline-list li img {
+  width: 70%;
+}
+
+
+.select-country {
+  position: relative;
+}
+
+.select-country:hover button {display: block;}
+
+.select-country button {
+  display: none;
+  position: absolute;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: aliceblue;
+    transition: all .25s;
+}
