@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import CovidService from './CovidService';
-import TabSettings from './components/TabSettings';
 import TabWorld from './components/TabWorld';
 import TabHome from './components/TabHome';
+import LocalDefaultCountries from './utils/LocalDefaultCountries';
+import { commarize } from './utils/FormatNum';
+
+const TabStatistics = React.lazy(() => import('./components/TabStatistics'));
 
 let chrome: any = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
   ? (window as any).chrome : (window as any).browser;
@@ -16,12 +19,12 @@ const tabsIcons = [
 const tabs = [
   { id: 0, name: 'home', icon: tabsIcons[0] },
   { id: 1, name: 'world', icon: tabsIcons[1] },
-  { id: 2, name: 'settings', icon: tabsIcons[2] }
+  { id: 2, name: 'statistics', icon: tabsIcons[2] }
 ];
 
 function App() {
 
-  const [defaultCountries, setDefaultCountries] = useState();
+  const [defaultCountries, setDefaultCountries] = useState([]);
   const [allCountries, setAllCountries] = useState([]);
   const [currentTabId, setCurrentTabId] = useState(0);
 
@@ -32,14 +35,34 @@ function App() {
   useEffect(() => {
     CovidService.getData()
       .then((countries: any) => {
-        
+
         setDefaultCountries(countries[0]);
         setAllCountries(countries[1]);
 
-        chrome.browserAction.setBadgeText({ text: '+' + countries[0][0].todayCases });
+        chrome.browserAction.setBadgeText({ text: '+' + commarize(countries[0][0].todayCases) });
       })
       .catch(e => { });
   }, []);
+
+  const onCtxMenu = (action: string, countryName: string) => {
+    switch (action) {
+      case 'add':
+        let countriesNames = LocalDefaultCountries.set(countryName);
+        let res = countriesNames.map((c: any) => allCountries.find((a: any) => a.country.toLowerCase() === c));
+        setDefaultCountries(res);
+        setCurrentTabId(0)
+        break;
+
+      case 'remove':
+        let nCountriesNames = LocalDefaultCountries.remove(countryName);
+        let nres = nCountriesNames.map((c: any) => allCountries.find((a: any) => a.country.toLowerCase() === c));
+        setDefaultCountries(nres);
+        break;
+
+      default:
+        break;
+    }
+  }
 
   return (
     <div className="App">
@@ -51,12 +74,14 @@ function App() {
           {tab.icon}{tab.name}</li>)}
       </ul>
 
-      {allCountries.length > 0
-        && (currentTabId === 0
-          ? <TabHome defaultCountries={defaultCountries} />
-          : currentTabId === 1
-            ? <TabWorld allCountries={allCountries} />
-            : <TabSettings />)}
+      <Suspense fallback={<div>Loading...</div>}>
+        {allCountries.length > 0
+          && (currentTabId === 0
+            ? <TabHome defaultCountries={defaultCountries} onCtxMenu={onCtxMenu} tabName="home" />
+            : currentTabId === 1
+              ? <TabWorld allCountries={allCountries} onCtxMenu={onCtxMenu} tabName="world" />
+              : <TabStatistics />)}
+      </Suspense>
     </div>
   );
 }

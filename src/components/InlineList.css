@@ -38,14 +38,34 @@
   position: relative;
 }
 
-.select-country:hover button {display: block;}
-
 .select-country button {
   display: none;
+  width: 70%;
+  top: 0;
   position: absolute;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    background-color: aliceblue;
-    transition: all .25s;
+  z-index: 9;
+  padding: 7px;
+  margin: 0;
+  background: var(--light-dark);
+  border: 0;
+}
+
+.select-country svg {margin: 0;}
+
+.select-country:hover button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }

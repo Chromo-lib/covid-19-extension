@@ -1,3 +1,5 @@
+import LocalDefaultCountries from "./utils/LocalDefaultCountries";
+
 export default class CovidService {
 
   static async getData() {
@@ -10,11 +12,12 @@ export default class CovidService {
         throw respJson.message;
       }
 
-      let countryName = localStorage.getItem('default-country-name')?.toLowerCase() || 'Tunisia';
-      let defaultCountries = respJson.filter((c: any) => c.country.toLowerCase().includes(countryName));
-      
+      let countriesNames = LocalDefaultCountries.get();
+      let defaultCountries = countriesNames
+        .map(v => respJson.find((k: any) => k.country.toLowerCase().startsWith(v)));
+
       if (defaultCountries.length < 1) {
-        defaultCountries = respJson.filter((c: any) => c.country.toLowerCase().includes('tunisia'));
+        defaultCountries = respJson.filter((c: any) => c.country.toLowerCase().startsWith('tunisia'));
       }
 
       return [
@@ -23,5 +26,4 @@ export default class CovidService {
       ];
     } catch (error) { }
   }
-
 }

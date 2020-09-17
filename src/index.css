@@ -1,7 +1,8 @@
 :root {
   --dark: #101213;
   --light-dark: #2b2929cb;
-  --white: #fff;
+  --white: #ffffff;
+  --muted: #c4c4c4;
 }
 
 @font-face {
@@ -39,7 +40,11 @@ header {
 
 .container {padding: 20px;}
 
-.content {max-height: 450px; display: flex; flex-direction: column;}
+.content {max-height: 450px; display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden;}
+
+.apexcharts-menu { background: var(--dark); }
+.apexcharts-menu div {font-size: 10px !important; width: 120px; text-align: left;}
+.apexcharts-menu div:hover {background:var(--light-dark) !important;}
 
 p, label {
   font-size: 14px;
@@ -86,6 +91,10 @@ button {
   align-items: center;
 }
 
+.flex-wrap {flex-wrap: wrap;}
+
+.d-flex-col {display: flex; flex-direction: column; justify-content: center; align-items: center;}
+
 .align-start {align-items: flex-start !important;}
 
 .txt-bleu {color: #00BCD4;}
@@ -121,8 +130,14 @@ svg {
   padding: 0 !important;
 }
 
+.p-10 {padding: 10px;}
+
 .mt-10 {
   margin-top: 10px;
+}
+
+.mt-0 {
+  margin-top: 0px;
 }
 
 .mr-10 {
@@ -161,6 +176,10 @@ img {
   width:60px;
 }
 
+.overflow-hidden {overflow: hidden !important;}
+
+.fs-14 {font-size: 14px !important;}
+.fs-10 {font-size:10px !important;}
 /***********************************************/
 .tabs li {
   height: 35px;

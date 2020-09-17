@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InlineList from './InlineList';
 
-export default function TabWorld({ allCountries }: any) {
+export default function TabWorld({ allCountries, onCtxMenu }: any) {
   const [slicedCountries, setSlicedCountries] = useState(allCountries.slice(0, 20));
   const [slicePer, setSlicePer] = useState(20);
 
@@ -34,9 +34,16 @@ export default function TabWorld({ allCountries }: any) {
     setSlicedCountries(nCountries);
   }
 
-  const onSelectCountry = (country:any) => {
-
-  }
+  useEffect(()=>{
+    document.addEventListener('scroll', function (event) {
+      if (document.body.scrollHeight == 
+          document.body.scrollTop +        
+          window.innerHeight) {
+          alert("Bottom!");
+      }
+  });
+  
+  },[]);
 
   return <>
     <div className="w-100 d-flex mb-10">
@@ -58,7 +65,8 @@ export default function TabWorld({ allCountries }: any) {
 
     <InlineList
       data={slicedCountries}
-      onSelectCountry={onSelectCountry}
+      onCtxMenu={onCtxMenu}
+      tabName="world"
     />
 
     {<button type="button" onClick={onLoadMore}>Load more</button>}
