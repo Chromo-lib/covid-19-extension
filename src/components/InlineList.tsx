@@ -15,7 +15,7 @@ export default function InlineList({ children, data }: any) {
     <ul className="inline-list hover">
 
       {data.map((details: any, i: number) => <li key={'c' + i}
-        onClick={() => { onClickCountry(details.country) }} title={details.country}>
+        onClick={() => { onClickCountry(details) }} title={details.country}>
 
         <div>
           <img src={details.countryInfo.flag} alt={details.country} height="35" />

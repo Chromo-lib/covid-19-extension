@@ -101,38 +101,42 @@ export default function TabStatisticsCountry() {
   const [countryStats, setCountryStats]: any = useState(null);
   const [selectedMonth, setSelectedMonth]: any = useState(100);
 
+  console.log(clickedCountry);
+
+
   useEffect(() => {
-    CovidService.statsByCountry(clickedCountry)
+    CovidService.statsByCountry(clickedCountry.country)
       .then(resp => {
         setCountryStats(resp);
       })
       .catch(err => { });
-  }, [clickedCountry]);
+  }, [clickedCountry.country]);
 
   const onSelectMonth = (e: any) => {
     setSelectedMonth(e.target.value);
   }
 
   const onAddOrRemove = (actionType: string) => {
+    const { country } = clickedCountry;
     switch (actionType) {
       case 'add':
-        let isN = defaultCountries.some((cnt: any) => cnt.country === clickedCountry);
+        let isN = defaultCountries.some((cnt: any) => cnt.country === country);
         if (!isN) {
-          let nd = allCountries.find((cnt: any) => cnt.country === clickedCountry);
+          let nd = allCountries.find((cnt: any) => cnt.country === country);
           setGloablState({ ...globalState, defaultCountries: [...defaultCountries, nd], currentTabId: 0 });
-          LocalDefaultCountries.set(clickedCountry);
+          LocalDefaultCountries.set(country);
         }
         else {
-          window.confirm("Already exists! " + clickedCountry);
+          window.confirm("Already exists! " + country);
         }
         break;
 
       case 'remove':
-        let c = window.confirm("Are you sure to remove? " + clickedCountry);
+        let c = window.confirm("Are you sure to remove? " + country);
         if (c) {
-          let ndd = defaultCountries.filter((cnt: any) => cnt.country !== clickedCountry);
+          let ndd = defaultCountries.filter((cnt: any) => cnt.country !== country);
           setGloablState({ ...globalState, defaultCountries: ndd, currentTabId: 0 });
-          LocalDefaultCountries.remove(clickedCountry);
+          LocalDefaultCountries.remove(country);
         }
         break;
 
@@ -143,14 +147,31 @@ export default function TabStatisticsCountry() {
 
   return (<div className="w-100 content p-10">
 
+    {clickedCountry
+      && <ul className="w-100 d-flex col-5 fs-10" style={{flexWrap:'wrap'}}>
+        <li className="d-flex-col bg-bleu"><span>country</span><span>{clickedCountry.country}</span></li>
+        <li className="d-flex-col bg-bleu"><span>continent</span><span>{clickedCountry.continent}</span></li>
+        <li className="d-flex-col bg-green"><span>population</span><span>{clickedCountry.population}</span></li>
+
+        <li className="d-flex-col"><span>cases</span><span>{clickedCountry.cases}</span></li>
+        <li className="d-flex-col"><span>active</span><span>{clickedCountry.active}</span></li>
+        <li className="d-flex-col bg-red"><span>critical</span><span>{clickedCountry.critical}</span></li>
+        <li className="d-flex-col bg-red"><span>deaths</span><span>{clickedCountry.deaths}</span></li>
+        <li className="d-flex-col bg-green"><span>recovered</span><span>{clickedCountry.recovered}</span></li>
+        
+        <li className="d-flex-col bg-red"><span>today deaths</span><span>{clickedCountry.todayDeaths}</span></li>
+        <li className="d-flex-col"><span>today cases</span><span>{clickedCountry.todayCases}</span></li>
+        <li className="d-flex-col"><span>tests</span><span>{clickedCountry.tests}</span></li>        
+        <li className="d-flex-col bg-green"><span>today recovered</span><span>{clickedCountry.todayRecovered}</span></li>
+      </ul>}
+
     <div className="w-100 d-flex">
-      <button className="m-0 bg-inherit bg-bleu">{clickedCountry} Country Statistics</button>
-      <button onClick={() => { onAddOrRemove('add') }}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="34" fill="none" viewBox="0 0 24 24" stroke="white">
+      <button onClick={() => { onAddOrRemove('add') }} className="bg-green">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" fill="none" viewBox="0 0 24 24" stroke="white">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>Add to home tab</button>
-      <button onClick={() => { onAddOrRemove('remove') }}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="34" fill="none" viewBox="0 0 24 24" stroke="#fff">
+      <button onClick={() => { onAddOrRemove('remove') }} className="bg-red">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" fill="none" viewBox="0 0 24 24" stroke="#fff">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
         </svg>Remove from home tab</button>
     </div>

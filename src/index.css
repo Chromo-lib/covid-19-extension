@@ -103,12 +103,13 @@ button {
 .align-start {align-items: flex-start !important;}
 
 .txt-bleu {color: #00BCD4;}
-.txt-green {color: #aaff47;}
+
 .txt-red {color: #ff5151;}
-.bg-red {background-color: #ff5151;}
+.bg-red {background-color: #da0000;}
 .bg-dark { background-color: var(--dark);}
 .bg-light-dark { background-color: var(--light-dark);}
 .bg-bleu {background-color: #5347ff;}
+.bg-green {background-color: #0da000;}
 
 .bg-inherit:hover {background-color:  #5347ff; }
 
@@ -191,6 +192,14 @@ img {
 
 .fs-14 {font-size: 14px !important;}
 .fs-10 {font-size:10px !important;}
+.fs-12 {font-size:12px !important;}
+
+.col-5>* {
+  flex:1 1 25%;
+  height: 50px;
+  border: 1px solid #ddd;
+  padding: 5px;
+}
 /***********************************************/
 .tabs li {
   height: 35px;

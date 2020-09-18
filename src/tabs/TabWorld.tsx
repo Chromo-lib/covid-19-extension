@@ -36,7 +36,7 @@ function TabWorld({ allCountries }: any) {
   }
 
   return <div className="w-100 content p-10">
-    <div className="w-100">
+    <div className="w-100 mb-10">
       <input type="search"
         className="w-50"
         name="country"
@@ -62,4 +62,4 @@ function TabWorld({ allCountries }: any) {
   </div>
 }
 
-export default React.memo(TabWorld);
+export default TabWorld;
