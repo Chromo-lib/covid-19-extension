@@ -28,8 +28,9 @@ export default class CovidService {
   }
 
   static async statsByCountry(countriesName: string) {
+    const url: string = 'https://api.covid19api.com/total/dayone/country/' + countriesName;
     try {
-      let countryStats: any = await fetch('https://api.covid19api.com/total/dayone/country/' + countriesName);
+      let countryStats: any = await fetch(url);
       countryStats = await countryStats.json();
 
       let isLastDay = (dt: Date) => {

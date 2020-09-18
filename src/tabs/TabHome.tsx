@@ -2,7 +2,7 @@ import React from 'react';
 import HeaderInlineList from '../components/HeaderInlineList';
 import InlineList from '../components/InlineList';
 
-export default function TabHome({ defaultCountries }: any) {
+function TabHome({ defaultCountries }: any) {
   return <>
     <header>
       <h3 className="m-0">covid 19 tracker</h3>
@@ -15,3 +15,5 @@ export default function TabHome({ defaultCountries }: any) {
     <InlineList data={defaultCountries} />
   </>
 }
+
+export default React.memo(TabHome);

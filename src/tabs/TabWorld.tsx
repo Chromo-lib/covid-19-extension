@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import HeaderInlineList from '../components/HeaderInlineList';
 import InlineList from '../components/InlineList';
 
-export default function TabWorld({ allCountries }: any) {
+function TabWorld({ allCountries }: any) {
   const [slicedCountries, setSlicedCountries] = useState(allCountries.slice(0, 20));
   const [slicePer, setSlicePer] = useState(20);
 
@@ -61,3 +61,5 @@ export default function TabWorld({ allCountries }: any) {
     </InlineList>
   </div>
 }
+
+export default React.memo(TabWorld);

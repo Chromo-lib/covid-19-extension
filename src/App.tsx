@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense, useContext } from 'react';
+import React, { useEffect, Suspense, useContext } from 'react';
 import CovidService from './CovidService';
 import { GlobalContext } from './state/GlobalState';
 
@@ -28,8 +28,6 @@ const tabs = [
 function App() {
 
   const { globalState, setGloablState }: any = useContext(GlobalContext);
-  const [defaultCountries, setDefaultCountries] = useState([]);
-  const [allCountries, setAllCountries] = useState([]);
 
   const onTabChange = (currentTabId: number) => {
     setGloablState({ ...globalState, currentTabId });
@@ -39,8 +37,11 @@ function App() {
     CovidService.getData()
       .then((countries: any) => {
 
-        setDefaultCountries(countries[0]);
-        setAllCountries(countries[1]);
+        setGloablState({
+          ...globalState,
+          allCountries: countries[1],
+          defaultCountries: countries[0]
+        });
 
         chrome.browserAction.setBadgeText({ text: '+' + commarize(countries[0][0].todayCases) });
       })
@@ -58,11 +59,11 @@ function App() {
       </ul>
 
       <Suspense fallback={<div>Loading...</div>}>
-        {allCountries.length > 0
+        {globalState.allCountries.length > 0
           && (globalState.currentTabId === 0
-            ? <TabHome defaultCountries={defaultCountries} tabName="home" />
+            ? <TabHome defaultCountries={globalState.defaultCountries} tabName="home" />
             : globalState.currentTabId === 1
-              ? <TabWorld allCountries={allCountries} tabName="world" />
+              ? <TabWorld allCountries={globalState.allCountries} tabName="world" />
               : globalState.currentTabId === 2 ? <TabStatistics /> : <TabStatisticsCountry />)}
       </Suspense>
     </div>

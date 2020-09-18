@@ -4,7 +4,9 @@ let GlobalContext: any = createContext(null);
 
 const initState = {
   currentTabId: 0,
-  clickedCountry: null
+  clickedCountry: null,
+  allCountries: [],
+  defaultCountries: []
 };
 
 function GlobalStateProvider({ children }: any) {

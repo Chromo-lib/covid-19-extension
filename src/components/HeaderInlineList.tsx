@@ -1,31 +1,29 @@
 import React from 'react';
 
 const HeaderInlineList = () => (
-  <ul className="inline-list overflow-hidden">
-    <li className="txt-bleu">
-      <div className="fs-10">Country</div>
+  <div className="header-list">
+    <div>Country</div>
 
-      <div className="fs-10">
-        <span>TODAY / ALL</span>
-        <span>CASES</span>
-      </div>
+    <div>
+      <span className="mr-2">TODAY / ALL</span>
+      <span>CASES</span>
+    </div>
 
-      <div className="fs-10">
-        <span>TODAY / ALL</span>
-        <span>DEATHS</span>
-      </div>
+    <div>
+      <span className="mr-2">TODAY / ALL</span>
+      <span>DEATHS</span>
+    </div>
 
-      <div className="fs-10">
-        <span>TODAY / ALL</span>
-        <span>RECOVERED</span>
-      </div>
+    <div>
+      <span className="mr-2">TODAY / ALL</span>
+      <span>RECOVERED</span>
+    </div>
 
-      <div className="fs-10">
-        <span>critical / </span>
-        <span> active</span>
-      </div>
-    </li>
-  </ul>
+    <div>
+      <span className="mr-2">critical / </span>
+      <span> active</span>
+    </div>
+  </div>
 )
 
 export default React.memo(HeaderInlineList);
