@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import InlineList from './InlineList';
+import React, { useState } from 'react';
+import HeaderInlineList from '../components/HeaderInlineList';
+import InlineList from '../components/InlineList';
 
-export default function TabWorld({ allCountries, onCtxMenu }: any) {
+export default function TabWorld({ allCountries }: any) {
   const [slicedCountries, setSlicedCountries] = useState(allCountries.slice(0, 20));
   const [slicePer, setSlicePer] = useState(20);
 
@@ -34,26 +35,16 @@ export default function TabWorld({ allCountries, onCtxMenu }: any) {
     setSlicedCountries(nCountries);
   }
 
-  useEffect(()=>{
-    document.addEventListener('scroll', function (event) {
-      if (document.body.scrollHeight == 
-          document.body.scrollTop +        
-          window.innerHeight) {
-          alert("Bottom!");
-      }
-  });
-  
-  },[]);
-
-  return <>
-    <div className="w-100 d-flex mb-10">
+  return <div className="w-100 content p-10">
+    <div className="w-100">
       <input type="search"
+        className="w-50"
         name="country"
         onChange={onSearch}
         value={countryName}
         placeholder="Search by country name.."
       />
-      <select name="sort" onChange={onSortBy} value={sortVal}>
+      <select className="w-50" name="sort" onChange={onSortBy} value={sortVal}>
         <option value="cases">Sort by cases</option>
         <option value="deaths">Sort by deaths</option>
         <option value="recovered">Sort by recovered</option>
@@ -61,14 +52,12 @@ export default function TabWorld({ allCountries, onCtxMenu }: any) {
         <option value="todayDeaths">Sort by today deaths</option>
         <option value="todayRecovered">Sort by today recovered</option>
       </select>
+
     </div>
+    <HeaderInlineList />
 
-    <InlineList
-      data={slicedCountries}
-      onCtxMenu={onCtxMenu}
-      tabName="world"
-    />
-
-    {<button type="button" onClick={onLoadMore}>Load more</button>}
-  </>
+    <InlineList data={slicedCountries}>
+      <button type="button" onClick={onLoadMore}>Load more</button>
+    </InlineList>
+  </div>
 }

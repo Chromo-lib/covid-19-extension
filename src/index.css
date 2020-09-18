@@ -40,7 +40,7 @@ header {
 
 .container {padding: 20px;}
 
-.content {max-height: 450px; display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden;}
+.content {max-height: 550px; display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden;}
 
 .apexcharts-menu { background: var(--dark); }
 .apexcharts-menu div {font-size: 10px !important; width: 120px; text-align: left;}
@@ -57,22 +57,20 @@ ul {
 }
 
 input,select {
-  padding: 10px 7px;
+  padding: 10px;
 }
 
 select, input[type="search"] {
   background: #272727 !important;
   color: #fff !important;
   border: 0;
-  margin-top: 10px;
   outline: none !important;
 }
 
-input[type="search"]{width: 55%;}
-select {width: 45%; cursor: pointer;}
-
 button {
     width: 100%;
+    display: flex;
+    justify-content:center;
     margin: 10px 0;
     background-color: #2b29296e;
     color: #ffffff;
@@ -120,6 +118,10 @@ svg {
 
 .w-100 {
   width: 100%;
+}
+
+.w-50 {
+  width: 50%;
 }
 
 .m-0 {

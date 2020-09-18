@@ -1,7 +1,8 @@
 import React from 'react';
-import InlineList from './InlineList';
+import HeaderInlineList from '../components/HeaderInlineList';
+import InlineList from '../components/InlineList';
 
-export default function TabHome({ defaultCountries, onCtxMenu }: any) {
+export default function TabHome({ defaultCountries }: any) {
   return <>
     <header>
       <h3 className="m-0">covid 19 tracker</h3>
@@ -9,10 +10,8 @@ export default function TabHome({ defaultCountries, onCtxMenu }: any) {
       <p className="m-0">WE HOPE YOU ARE STAYING HEALTHY AND SAFE.</p>
     </header>
 
-    <InlineList
-      data={defaultCountries}
-      onCtxMenu={onCtxMenu}
-      tabName="home"
-    />
+    <HeaderInlineList />
+
+    <InlineList data={defaultCountries} />
   </>
 }

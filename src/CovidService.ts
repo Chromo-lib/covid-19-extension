@@ -26,4 +26,44 @@ export default class CovidService {
       ];
     } catch (error) { }
   }
+
+  static async statsByCountry(countriesName: string) {
+    try {
+      let countryStats: any = await fetch('https://api.covid19api.com/total/dayone/country/' + countriesName);
+      countryStats = await countryStats.json();
+
+      let isLastDay = (dt: Date) => {
+        return new Date(dt.getTime() + 86400000).getDate() === 1;
+      }
+
+      return countryStats.reduce((result: any, country: any) => {
+        let date = new Date(country.Date);
+        let lastMonth = new Date().getMonth();
+
+        if (isLastDay(date)) {
+          result[date.getMonth()] = {
+            Confirmed: country.Confirmed,
+            Deaths: country.Deaths,
+            Active: country.Active,
+            Recovered: country.Recovered
+          };
+        }
+
+        if (!result[lastMonth]) {
+          let lc = countryStats[countryStats.length - 1];
+
+          result[lastMonth] = {
+            Confirmed: lc.Confirmed,
+            Deaths: lc.Deaths,
+            Active: lc.Active,
+            Recovered: lc.Recovered
+          };
+        }
+        return result;
+      }, {});
+
+    } catch (error) {
+      return error.message;
+    }
+  }
 }

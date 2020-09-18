@@ -1,6 +1,6 @@
 .inline-list {
   width: 100%;
-  min-height: 47px;
+  min-height: 35px;
   font-size: 12px;
   overflow: hidden;
   overflow-y: auto;
@@ -14,7 +14,10 @@
   flex-wrap: wrap;
   word-break: break-word;
   padding: 8px 0;
+  cursor: pointer;
 }
+
+.hover > li:hover {background-color: rgba(255, 255, 255, 0.062);}
 
 .inline-list li>div {
   width: 20%;
@@ -23,49 +26,18 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  font-size: 12px;
 }
 
 .inline-list li>div span {
   width: 100%;
+  transition: transform .25s;
+}
+
+.inline-list li>div span:hover {
+  transform: scale(1.2);
 }
 
 .inline-list li img {
   width: 70%;
-}
-
-
-.select-country {
-  position: relative;
-}
-
-.select-country button {
-  display: none;
-  width: 70%;
-  top: 0;
-  position: absolute;
-  z-index: 9;
-  padding: 7px;
-  margin: 0;
-  background: var(--light-dark);
-  border: 0;
-}
-
-.select-country svg {margin: 0;}
-
-.select-country:hover button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.fadeIn {
-  animation-name: fadeIn;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
 }
