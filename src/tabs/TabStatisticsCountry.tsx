@@ -123,7 +123,7 @@ export default function TabStatisticsCountry() {
         let isN = defaultCountries.some((cnt: any) => cnt.country === country);
         if (!isN) {
           let nd = allCountries.find((cnt: any) => cnt.country === country);
-          setGloablState({ ...globalState, defaultCountries: [...defaultCountries, nd], currentTabId: 0 });
+          setGloablState({ ...globalState, defaultCountries: [...defaultCountries, nd], currentTabId: 0, tabName:'home' });
           LocalDefaultCountries.set(country);
         }
         else {
@@ -135,7 +135,7 @@ export default function TabStatisticsCountry() {
         let c = window.confirm("Are you sure to remove? " + country);
         if (c) {
           let ndd = defaultCountries.filter((cnt: any) => cnt.country !== country);
-          setGloablState({ ...globalState, defaultCountries: ndd, currentTabId: 0 });
+          setGloablState({ ...globalState, defaultCountries: ndd, currentTabId: 0, tabName:'home' });
           LocalDefaultCountries.remove(country);
         }
         break;

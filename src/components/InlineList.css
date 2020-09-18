@@ -44,7 +44,7 @@
 
 .ctx-menu {
   min-width: 130px;
-  max-width: 170px;
+  max-width: 200px;
   position: fixed;
   background-color: #4c4c4c !important;
   text-align: left;

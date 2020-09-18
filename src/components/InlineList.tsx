@@ -65,7 +65,7 @@ export default function InlineList({ children, data }: any) {
       setClickedCountry(cdCounttry);
       ctxMenuRef.current.style.top = event.pageY + "px";
       ctxMenuRef.current.style.left = event.pageX + "px";
-      ctxMenuRef.current.classList.toggle("disp-none");
+      ctxMenuRef.current.classList.remove("disp-none");
     }
 
 
