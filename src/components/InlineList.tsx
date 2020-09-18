@@ -15,7 +15,7 @@ const ContextMenu = forwardRef(({ clickedCountry }: any, ref: any) => {
         let isN = defaultCountries.some((cnt: any) => cnt.country === country);
         if (!isN) {
           let nd = allCountries.find((cnt: any) => cnt.country === country);
-          setGloablState({ ...globalState, defaultCountries: [...defaultCountries, nd], currentTabId: 0 });
+          setGloablState({ ...globalState, defaultCountries: [...defaultCountries, nd], currentTabId: 0, tabName: 'home' });
           LocalDefaultCountries.set(country);
         }
         else {
@@ -68,7 +68,7 @@ export default function InlineList({ children, data }: any) {
       ctxMenuRef.current.classList.toggle("disp-none");
     }
 
-    
+
     let clickAway = () => {
       if (ctxMenuRef && ctxMenuRef.current) {
         ctxMenuRef.current.classList.add("disp-none");
