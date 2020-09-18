@@ -35,8 +35,8 @@ function TabWorld({ allCountries }: any) {
     setSlicedCountries(nCountries);
   }
 
-  return <div className="w-100 content p-10">
-    <div className="w-100 mb-10">
+  return <div className="w-100 content">
+    <div className="w-100 d-flex p-10">
       <input type="search"
         className="w-50"
         name="country"
@@ -57,7 +57,9 @@ function TabWorld({ allCountries }: any) {
     <HeaderInlineList />
 
     <InlineList data={slicedCountries}>
-      <button type="button" onClick={onLoadMore}>Load more</button>
+      <div className="w-100 p-10">
+        <button type="button" onClick={onLoadMore}>Load more</button>
+      </div>
     </InlineList>
   </div>
 }

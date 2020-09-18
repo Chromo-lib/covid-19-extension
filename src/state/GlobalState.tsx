@@ -6,7 +6,8 @@ const initState = {
   currentTabId: 0,
   clickedCountry: null, // country object
   allCountries: [],
-  defaultCountries: []
+  defaultCountries: [],
+  tabName: 'home'
 };
 
 function GlobalStateProvider({ children }: any) {

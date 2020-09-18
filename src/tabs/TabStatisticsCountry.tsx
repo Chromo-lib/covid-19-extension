@@ -4,6 +4,7 @@ import { GlobalContext } from '../state/GlobalState';
 import EnglishMonths from '../utils/EnglishMonths';
 import { Bar } from 'react-chartjs-2';
 import LocalDefaultCountries from '../utils/LocalDefaultCountries';
+import { FormatNum } from '../utils/FormatNum';
 
 const chartOptions = {
   scales: {
@@ -101,15 +102,14 @@ export default function TabStatisticsCountry() {
   const [countryStats, setCountryStats]: any = useState(null);
   const [selectedMonth, setSelectedMonth]: any = useState(100);
 
-  console.log(clickedCountry);
-
-
   useEffect(() => {
-    CovidService.statsByCountry(clickedCountry.country)
+    if(clickedCountry) {
+      CovidService.statsByCountry(clickedCountry.country)
       .then(resp => {
         setCountryStats(resp);
       })
       .catch(err => { });
+    }
   }, [clickedCountry.country]);
 
   const onSelectMonth = (e: any) => {
@@ -147,36 +147,36 @@ export default function TabStatisticsCountry() {
 
   return (<div className="w-100 content p-10">
 
-    {clickedCountry
-      && <ul className="w-100 d-flex col-5 fs-10" style={{flexWrap:'wrap'}}>
-        <li className="d-flex-col bg-bleu"><span>country</span><span>{clickedCountry.country}</span></li>
-        <li className="d-flex-col bg-bleu"><span>continent</span><span>{clickedCountry.continent}</span></li>
-        <li className="d-flex-col bg-green"><span>population</span><span>{clickedCountry.population}</span></li>
-
-        <li className="d-flex-col"><span>cases</span><span>{clickedCountry.cases}</span></li>
-        <li className="d-flex-col"><span>active</span><span>{clickedCountry.active}</span></li>
-        <li className="d-flex-col bg-red"><span>critical</span><span>{clickedCountry.critical}</span></li>
-        <li className="d-flex-col bg-red"><span>deaths</span><span>{clickedCountry.deaths}</span></li>
-        <li className="d-flex-col bg-green"><span>recovered</span><span>{clickedCountry.recovered}</span></li>
-        
-        <li className="d-flex-col bg-red"><span>today deaths</span><span>{clickedCountry.todayDeaths}</span></li>
-        <li className="d-flex-col"><span>today cases</span><span>{clickedCountry.todayCases}</span></li>
-        <li className="d-flex-col"><span>tests</span><span>{clickedCountry.tests}</span></li>        
-        <li className="d-flex-col bg-green"><span>today recovered</span><span>{clickedCountry.todayRecovered}</span></li>
-      </ul>}
-
-    <div className="w-100 d-flex">
-      <button onClick={() => { onAddOrRemove('add') }} className="bg-green">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" fill="none" viewBox="0 0 24 24" stroke="white">
+    <div className="w-100 d-flex mb-10">
+      <button onClick={() => { onAddOrRemove('add') }} >
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" fill="none" viewBox="0 0 24 24" stroke="black">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>Add to home tab</button>
-      <button onClick={() => { onAddOrRemove('remove') }} className="bg-red">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" fill="none" viewBox="0 0 24 24" stroke="#fff">
+      <button onClick={() => { onAddOrRemove('remove') }} >
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" fill="none" viewBox="0 0 24 24" stroke="black">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
         </svg>Remove from home tab</button>
     </div>
 
-    {countryStats && <>
+    {clickedCountry
+      && <ul className="w-100 d-flex col-4 fs-10" style={{ flexWrap: 'wrap' }}>
+        <li className="d-flex-col bg-bleu"><span>country</span><span>{clickedCountry.country}</span></li>
+        <li className="d-flex-col bg-bleu"><span>continent</span><span>{clickedCountry.continent}</span></li>
+        <li className="d-flex-col bg-green"><span>population</span><span>{FormatNum(clickedCountry.population)}</span></li>
+
+        <li className="d-flex-col"><span>cases</span><span>{FormatNum(clickedCountry.cases)}</span></li>
+        <li className="d-flex-col"><span>active</span><span>{FormatNum(clickedCountry.active)}</span></li>
+        <li className="d-flex-col bg-red"><span>critical</span><span>{FormatNum(clickedCountry.critical)}</span></li>
+        <li className="d-flex-col bg-red"><span>deaths</span><span>{FormatNum(clickedCountry.deaths)}</span></li>
+        <li className="d-flex-col bg-green"><span>recovered</span><span>{FormatNum(clickedCountry.recovered)}</span></li>
+
+        <li className="d-flex-col bg-red"><span>today deaths</span><span>{FormatNum(clickedCountry.todayDeaths)}</span></li>
+        <li className="d-flex-col"><span>today cases</span><span>{FormatNum(clickedCountry.todayCases)}</span></li>
+        <li className="d-flex-col"><span>tests</span><span>{FormatNum(clickedCountry.tests)}</span></li>
+        <li className="d-flex-col bg-green"><span>today recovered</span><span>{FormatNum(clickedCountry.todayRecovered)}</span></li>
+      </ul>}
+
+    {countryStats && <div className="w-100 py-10">
       <select className="w-100" name="months" onChange={onSelectMonth}>
         <option value={100}>Choose a month</option>
         {Object.keys(countryStats).map((k: any) => <option key={k} value={k}>
@@ -185,7 +185,7 @@ export default function TabStatisticsCountry() {
       </select>
 
       <CountryChart countryStats={countryStats} selectedMonth={selectedMonth} />
-    </>}
+    </div>}
 
   </div>);
 }

@@ -30,7 +30,7 @@ function App() {
   const { globalState, setGloablState }: any = useContext(GlobalContext);
 
   const onTabChange = (currentTabId: number) => {
-    setGloablState({ ...globalState, currentTabId });
+    setGloablState({ ...globalState, currentTabId, tabName: tabs[currentTabId].name });
   }
 
   useEffect(() => {
@@ -51,7 +51,7 @@ function App() {
   return (
     <div className="App">
 
-      <ul className="tabs d-flex col-3 bg-light-dark">
+      <ul className="tabs d-flex col-3 bg-dark">
         {tabs.map(tab => <li key={tab.id}
           onClick={() => { onTabChange(tab.id) }}
           className={globalState.currentTabId === tab.id ? 'active-tab' : ''}>
@@ -66,6 +66,11 @@ function App() {
               ? <TabWorld allCountries={globalState.allCountries} tabName="world" />
               : globalState.currentTabId === 2 ? <TabStatistics /> : <TabStatisticsCountry />)}
       </Suspense>
+
+
+      <footer>
+        <a href="https://github.com/haikelfazzani">Created with coffee by Haikel Fazzani</a>
+      </footer>
     </div>
   );
 }

@@ -12,7 +12,9 @@ function TabHome({ defaultCountries }: any) {
 
     <HeaderInlineList />
 
-    <InlineList data={defaultCountries} />
+    <div className="w-100 py-10">
+      <InlineList data={defaultCountries} />
+    </div>
   </>
 }
 
