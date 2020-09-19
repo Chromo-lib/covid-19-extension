@@ -2,8 +2,8 @@ import LocalDefaultCountries from "./utils/LocalDefaultCountries";
 
 export default class CovidService {
 
-  static async getData() {
-    const BASE_URL = 'https://corona.lmao.ninja/v2/countries';
+  static async allCountries() {
+    const BASE_URL = 'https://corona.lmao.ninja/v3/covid-19/countries';
 
     try {
       let resp = await fetch(BASE_URL);
@@ -27,8 +27,8 @@ export default class CovidService {
     } catch (error) { }
   }
 
-  static async statsByCountry(countriesName: string) {
-    const url: string = 'https://api.covid19api.com/total/dayone/country/' + countriesName;
+  static async statsByCountry(countryName: string) {
+    const url: string = 'https://api.covid19api.com/total/dayone/country/' + countryName;
     try {
       let countryStats: any = await fetch(url);
       countryStats = await countryStats.json();
@@ -66,5 +66,23 @@ export default class CovidService {
     } catch (error) {
       return error.message;
     }
+  }
+
+  static async summury() {
+    const BASE_URL = 'https://api.covid19api.com/summary';
+    try {
+      let resp = await fetch(BASE_URL);
+      let respJson = await resp.json();
+      return respJson;
+    } catch (error) { }
+  }
+
+  static async statsByContents() {
+    const BASE_URL = 'https://corona.lmao.ninja/v3/covid-19/continents';
+    try {
+      let resp = await fetch(BASE_URL);
+      let respJson = await resp.json();
+      return respJson;
+    } catch (error) { }
   }
 }

@@ -135,6 +135,8 @@ button:hover svg path, button:hover {
   width: 50%;
 }
 
+.mxw-4 {max-height: 400px;}
+
 .m-0 {
   margin: 0;
 }
@@ -148,7 +150,7 @@ button:hover svg path, button:hover {
 .py-10 {padding: 10px 0;}
 
 .mt-10 {
-  margin-top: 10px;
+  margin-top: 10px !important;
 }
 
 .mt-0 {
@@ -193,6 +195,8 @@ img {
 .fs-14 {font-size: 14px !important;}
 .fs-10 {font-size:10px !important;}
 .fs-12 {font-size:12px !important;}
+
+.font-bold {font-weight: 600;}
 /***********************************************/
 .tabs li {
   height: 35px;

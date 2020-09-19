@@ -5,6 +5,7 @@ import EnglishMonths from '../utils/EnglishMonths';
 import { Bar } from 'react-chartjs-2';
 import LocalDefaultCountries from '../utils/LocalDefaultCountries';
 import { FormatNum } from '../utils/FormatNum';
+import { backgroundColor, borderColor } from '../utils/ChartColors';
 
 const chartOptions = {
   scales: {
@@ -21,20 +22,6 @@ const chartOptions = {
     }]
   }
 }
-
-const backgroundColor = [
-  'rgba(255, 99, 132, 0.6)',
-  'rgba(54, 162, 235, 0.6)',
-  'rgba(255, 206, 86, 0.6)',
-  'rgba(75, 192, 192, 0.6)'
-];
-
-const borderColor = [
-  'rgba(255, 99, 132, 1)',
-  'rgba(54, 162, 235, 1)',
-  'rgba(255, 206, 86, 1)',
-  'rgba(75, 192, 192, 1)'
-];
 
 const CountryChart = ({ countryStats, selectedMonth }: any) => {
 
@@ -94,6 +81,28 @@ const CountryChart = ({ countryStats, selectedMonth }: any) => {
   </>
 }
 
+const CountryInfos = ({ clickedCountry }: any) => {
+  return <div className="w-100">
+    <ul className="w-100 d-flex col-4 fs-10" style={{ flexWrap: 'wrap' }}>
+      <li className="d-flex-col bg-bleu"><span>country</span><span>{clickedCountry.country}</span></li>
+      <li className="d-flex-col bg-bleu"><span>continent</span><span>{clickedCountry.continent}</span></li>
+      <li className="d-flex-col bg-bleu"><span>population</span><span>{FormatNum(clickedCountry.population)}</span></li>
+    </ul>
+
+    <ul className="w-100 d-flex col-4 fs-10" style={{ flexWrap: 'wrap' }}>
+      <li className="d-flex-col"><span>cases</span><span>{FormatNum(clickedCountry.cases)}</span></li>
+      <li className="d-flex-col"><span>active</span><span>{FormatNum(clickedCountry.active)}</span></li>
+      <li className="d-flex-col bg-red"><span>critical</span><span>{FormatNum(clickedCountry.critical)}</span></li>
+      <li className="d-flex-col bg-red"><span>deaths</span><span>{FormatNum(clickedCountry.deaths)}</span></li>
+      <li className="d-flex-col bg-green"><span>recovered</span><span>{FormatNum(clickedCountry.recovered)}</span></li>
+
+      <li className="d-flex-col bg-red"><span>today deaths</span><span>{FormatNum(clickedCountry.todayDeaths)}</span></li>
+      <li className="d-flex-col"><span>today cases</span><span>{FormatNum(clickedCountry.todayCases)}</span></li>
+      <li className="d-flex-col bg-green"><span>today recovered</span><span>{FormatNum(clickedCountry.todayRecovered)}</span></li>
+    </ul>
+  </div>
+}
+
 export default function TabStatisticsCountry() {
 
   const { globalState, setGloablState }: any = useContext(GlobalContext);
@@ -103,12 +112,12 @@ export default function TabStatisticsCountry() {
   const [selectedMonth, setSelectedMonth]: any = useState(100);
 
   useEffect(() => {
-    if(clickedCountry) {
+    if (clickedCountry) {
       CovidService.statsByCountry(clickedCountry.country)
-      .then(resp => {
-        setCountryStats(resp);
-      })
-      .catch(err => { });
+        .then(resp => {
+          setCountryStats(resp);
+        })
+        .catch(err => { });
     }
   }, [clickedCountry.country]);
 
@@ -123,7 +132,7 @@ export default function TabStatisticsCountry() {
         let isN = defaultCountries.some((cnt: any) => cnt.country === country);
         if (!isN) {
           let nd = allCountries.find((cnt: any) => cnt.country === country);
-          setGloablState({ ...globalState, defaultCountries: [...defaultCountries, nd], currentTabId: 0, tabName:'home' });
+          setGloablState({ ...globalState, defaultCountries: [...defaultCountries, nd], currentTabId: 0, tabName: 'home' });
           LocalDefaultCountries.set(country);
         }
         else {
@@ -135,7 +144,7 @@ export default function TabStatisticsCountry() {
         let c = window.confirm("Are you sure to remove? " + country);
         if (c) {
           let ndd = defaultCountries.filter((cnt: any) => cnt.country !== country);
-          setGloablState({ ...globalState, defaultCountries: ndd, currentTabId: 0, tabName:'home' });
+          setGloablState({ ...globalState, defaultCountries: ndd, currentTabId: 0, tabName: 'home' });
           LocalDefaultCountries.remove(country);
         }
         break;
@@ -158,23 +167,7 @@ export default function TabStatisticsCountry() {
         </svg>Remove from home tab</button>
     </div>
 
-    {clickedCountry
-      && <ul className="w-100 d-flex col-4 fs-10" style={{ flexWrap: 'wrap' }}>
-        <li className="d-flex-col bg-bleu"><span>country</span><span>{clickedCountry.country}</span></li>
-        <li className="d-flex-col bg-bleu"><span>continent</span><span>{clickedCountry.continent}</span></li>
-        <li className="d-flex-col bg-green"><span>population</span><span>{FormatNum(clickedCountry.population)}</span></li>
-
-        <li className="d-flex-col"><span>cases</span><span>{FormatNum(clickedCountry.cases)}</span></li>
-        <li className="d-flex-col"><span>active</span><span>{FormatNum(clickedCountry.active)}</span></li>
-        <li className="d-flex-col bg-red"><span>critical</span><span>{FormatNum(clickedCountry.critical)}</span></li>
-        <li className="d-flex-col bg-red"><span>deaths</span><span>{FormatNum(clickedCountry.deaths)}</span></li>
-        <li className="d-flex-col bg-green"><span>recovered</span><span>{FormatNum(clickedCountry.recovered)}</span></li>
-
-        <li className="d-flex-col bg-red"><span>today deaths</span><span>{FormatNum(clickedCountry.todayDeaths)}</span></li>
-        <li className="d-flex-col"><span>today cases</span><span>{FormatNum(clickedCountry.todayCases)}</span></li>
-        <li className="d-flex-col"><span>tests</span><span>{FormatNum(clickedCountry.tests)}</span></li>
-        <li className="d-flex-col bg-green"><span>today recovered</span><span>{FormatNum(clickedCountry.todayRecovered)}</span></li>
-      </ul>}
+    {clickedCountry && <CountryInfos clickedCountry={clickedCountry} />}
 
     {countryStats && <div className="w-100 py-10">
       <select className="w-100" name="months" onChange={onSelectMonth}>

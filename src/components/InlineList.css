@@ -8,6 +8,7 @@
 }
 
 .inline-list li {
+  position: relative;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -43,13 +44,12 @@
 }
 
 .ctx-menu {
-  min-width: 130px;
-  max-width: 200px;
-  position: fixed;
+  display: inline-block;
+  position: absolute;
   background-color: #4c4c4c !important;
   text-align: left;
   color: var(--white);
-  font-size: 8px;
+  font-size: 9px;
   z-index: 9999;
   transform: scale(1);
   transition: transform 300ms ease-in-out;
@@ -61,7 +61,7 @@
   content:"\A";
     border-style: solid;
     border-width: 10px 15px 10px 0;
-    border-color: transparent var(--dark) transparent transparent;
+    border-color: transparent #4c4c4c transparent transparent;
     position: absolute;
     left: -15px;
 }
@@ -69,6 +69,7 @@
 .ctx-menu li { 
   padding: 5px;
   border-bottom: 1px solid var(--dark);
+  border-left: 1px solid var(--dark);
 }
 
 .ctx-menu li:last-child { 

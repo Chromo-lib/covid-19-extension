@@ -3,7 +3,7 @@ import HeaderInlineList from '../components/HeaderInlineList';
 import InlineList from '../components/InlineList';
 
 function TabHome({ defaultCountries }: any) {
-  return <>
+  return <div className="w-100 content">
     <header>
       <h3 className="m-0">covid 19 tracker</h3>
       <p className="mt-0">{new Date().toString().slice(0, 15)}</p>
@@ -12,10 +12,10 @@ function TabHome({ defaultCountries }: any) {
 
     <HeaderInlineList />
 
-    <div className="w-100 py-10">
+    <div className="w-100 mxw-4 mb-10">
       <InlineList data={defaultCountries} />
     </div>
-  </>
+  </div>
 }
 
 export default React.memo(TabHome);

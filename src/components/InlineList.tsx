@@ -24,12 +24,9 @@ const ContextMenu = forwardRef(({ clickedCountry }: any, ref: any) => {
         break;
 
       case 'remove':
-        let c = window.confirm("Are you sure to remove? " + country);
-        if (c) {
-          let ndd = defaultCountries.filter((cnt: any) => cnt.country !== country);
-          setGloablState({ ...globalState, defaultCountries: ndd, currentTabId: 0 });
-          LocalDefaultCountries.remove(country);
-        }
+        let ndd = defaultCountries.filter((cnt: any) => cnt.country !== country);
+        setGloablState({ ...globalState, defaultCountries: ndd, currentTabId: 0, tabName: 'home' });
+        LocalDefaultCountries.remove(country);
         break;
 
       case 'stats':
@@ -42,7 +39,7 @@ const ContextMenu = forwardRef(({ clickedCountry }: any, ref: any) => {
   }
 
   return <ul className="ctx-menu disp-none" ref={ref}>
-    <li onClick={() => { onAction('stats') }}>More Statistics for {clickedCountry.country}</li>
+    <li onClick={() => { onAction('stats') }}>More Statistics for <span className="txt-bleu font-bold">{clickedCountry.country}</span></li>
     {tabName === 'world'
       ? <li onClick={() => { onAction('add') }}>add to home</li>
       : <li onClick={() => { onAction('remove') }}>remove from home</li>}
@@ -63,8 +60,8 @@ export default function InlineList({ children, data }: any) {
     event.preventDefault();
     if (ctxMenuRef && ctxMenuRef.current) {
       setClickedCountry(cdCounttry);
-      ctxMenuRef.current.style.top = event.pageY + "px";
-      ctxMenuRef.current.style.left = event.pageX + "px";
+      ctxMenuRef.current.style.top = event.pageY - 10 + "px";
+      ctxMenuRef.current.style.left = event.pageX + 15 + "px";
       ctxMenuRef.current.classList.remove("disp-none");
     }
 

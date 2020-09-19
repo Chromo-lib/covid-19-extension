@@ -7,17 +7,17 @@ const HeaderInlineList = () => (
       <span>flag</span>
     </div>
     <div>
-      <span>TODAY / ALL</span>
+      <span>New / ALL</span>
       <span>CASES</span>
     </div>
 
     <div>
-      <span>TODAY / ALL</span>
+      <span>New / ALL</span>
       <span>DEATHS</span>
     </div>
 
     <div>
-      <span>TODAY / ALL</span>
+      <span>New / ALL</span>
       <span>RECOVERED</span>
     </div>
 
