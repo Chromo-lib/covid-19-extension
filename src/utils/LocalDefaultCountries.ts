@@ -27,4 +27,8 @@ export default class LocalDefaultCountries {
     localStorage.setItem(localID, JSON.stringify(nCountries));
     return nCountries;
   }
+
+  static replace(nCountries: Array<string>) {
+    localStorage.setItem(localID, JSON.stringify(nCountries));
+  }
 }

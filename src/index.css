@@ -101,15 +101,17 @@ button:hover svg path, button:hover {
 .align-start {align-items: flex-start !important;}
 
 .txt-bleu {color: #00BCD4;}
-
+.txt-yellow {background-color: #ffeb3b !important;}
 .txt-red {color: #ff5151;}
 .txt-green {color: #3fff46;}
 
-.bg-red {background-color: #da0000;}
-.bg-dark { background-color: var(--dark);}
+.bg-red {background-color: #da0000 !important;}
+.bg-dark { background-color: var(--dark) !important;}
 .bg-light-dark { background-color: var(--light-dark);}
-.bg-bleu {background-color: #5347ff;}
+.bg-bleu {background-color: #5347ff !important;}
+.bg-light-bleu {background-color: #5347ff6b !important;}
 .bg-green {background-color: #0da000;}
+
 
 .col-4>* {
   flex:1 1 25%;
