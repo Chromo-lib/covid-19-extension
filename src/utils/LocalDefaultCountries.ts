@@ -2,7 +2,7 @@ const localID: string = 'default-countries-name';
 
 export default class LocalDefaultCountries {
 
-  static set(countryName: string) {
+  static add(countryName: string) {
     countryName = countryName.toLowerCase();
     let countriesNames: any = this.get();
     if (!countriesNames.includes(countryName)) {

@@ -16,7 +16,7 @@ const ContextMenu = forwardRef(({ clickedCountry }: any, ref: any) => {
         if (!isN) {
           let nd = allCountries.find((cnt: any) => cnt.country === country);
           setGloablState({ ...globalState, defaultCountries: [...defaultCountries, nd], currentTabId: 0, tabName: 'home' });
-          LocalDefaultCountries.set(country);
+          LocalDefaultCountries.add(country);
         }
         else {
           window.confirm("Already exists! " + country);
@@ -30,7 +30,7 @@ const ContextMenu = forwardRef(({ clickedCountry }: any, ref: any) => {
         break;
 
       case 'stats':
-        setGloablState({ ...globalState, clickedCountry, currentTabId: 3 });
+        setGloablState({ ...globalState, clickedCountry, currentTabId: 100 });
         break;
 
       default:
@@ -60,7 +60,7 @@ export default function InlineList({ children, data }: any) {
   });
 
   const onClickCountry = (cdCounttry: string) => {
-    setGloablState({ ...globalState, clickedCountry: cdCounttry, currentTabId: 3 })
+    setGloablState({ ...globalState, clickedCountry: cdCounttry, currentTabId: 100 })
   }
 
   const onContextMenu = (event: any, cdCounttry: any) => {

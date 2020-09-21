@@ -25,11 +25,7 @@ const chartOptions = {
 
 export default function TabGlobal() {
 
-  const [state, setState]: any = useState({
-    globalStats: null,
-    chartDataTotal: null,
-    chartDataToday: null
-  });
+  const [state, setState]: any = useState({ globalStats: null, chartDataTotal: null });
 
   useEffect(() => {
     Promise.all([CovidService.summury(), CovidService.statsByContents()])
@@ -41,26 +37,26 @@ export default function TabGlobal() {
             {
               label: 'Cases',
               data: continents.map((c: any) => c.cases),
-              backgroundColor:backgroundColor[1],
-              borderColor:borderColor[1]
+              backgroundColor: backgroundColor[1],
+              borderColor: borderColor[1]
             },
             {
               label: 'Recovered',
               data: continents.map((c: any) => c.recovered),
-              backgroundColor:backgroundColor[3],
-              borderColor:borderColor[3]
+              backgroundColor: backgroundColor[3],
+              borderColor: borderColor[3]
             },
             {
               label: 'Deaths',
               data: continents.map((c: any) => c.deaths),
-              backgroundColor:backgroundColor[0],
-              borderColor:borderColor[0]
+              backgroundColor: backgroundColor[0],
+              borderColor: borderColor[0]
             },
             {
               label: 'Active',
               data: continents.map((c: any) => c.active),
-              backgroundColor:backgroundColor[2],
-              borderColor:borderColor[2]
+              backgroundColor: backgroundColor[2],
+              borderColor: borderColor[2]
             }
           ]
         };
@@ -71,7 +67,7 @@ export default function TabGlobal() {
   }, []);
 
   return <div className="w-100 content p-10">
-    <h3 className="mt-0">Global Statistics</h3>
+    <h3 className="mt-0 fs-14">Global Statistics</h3>
     {state.globalStats && <ul className="w-100 d-flex flex-wrap">
       {Object.keys(state.globalStats).map((r: any) => <li key={r}
         style={{ width: '50%', border: '1px solid #4e4e4e' }}
@@ -81,8 +77,8 @@ export default function TabGlobal() {
       </li>)}
     </ul>}
 
-    {state.globalStats && <div className="w-100 mt-10">
-      <p>Global Statistics By Continent</p>
+    {state.chartDataTotal && <div className="w-100 mt-10">
+      <h3 className="mt-0 fs-14">Global Statistics By Continent</h3>
       <Bar
         data={state.chartDataTotal}
         height={300}

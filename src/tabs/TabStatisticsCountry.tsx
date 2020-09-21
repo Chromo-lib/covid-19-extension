@@ -133,7 +133,7 @@ export default function TabStatisticsCountry() {
         if (!isN) {
           let nd = allCountries.find((cnt: any) => cnt.country === country);
           setGloablState({ ...globalState, defaultCountries: [...defaultCountries, nd], currentTabId: 0, tabName: 'home' });
-          LocalDefaultCountries.set(country);
+          LocalDefaultCountries.add(country);
         }
         else {
           window.confirm("Already exists! " + country);
