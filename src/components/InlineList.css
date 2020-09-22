@@ -47,14 +47,14 @@
 .ctx-menu {
   display: inline-block;
   position: absolute;
-  background-color: #4c4c4c !important;
+  background-color: var(--dark-beige) !important;
   text-align: left;
   color: var(--white);
   font-size: 9px;
   z-index: 9999;
   transform: scale(1);
   transition: transform 300ms ease-in-out;
-  box-shadow: 0px 1px 14px 2px rgb(111 111 111 / 0%), 0 20px 30px 0px rgb(0 0 0 / 46%), -1px 1px 36px 8px rgb(255 255 255 / 12%);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(0, 0, 0, 0.1) 0px 8px 16px 0px;
   cursor: pointer;
 }
 
@@ -62,7 +62,7 @@
   content:"\A";
     border-style: solid;
     border-width: 10px 15px 10px 0;
-    border-color: transparent #4c4c4c transparent transparent;
+    border-color: transparent var(--dark-beige) transparent transparent;
     position: absolute;
     left: -15px;
 }

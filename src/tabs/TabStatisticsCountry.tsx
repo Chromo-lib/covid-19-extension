@@ -11,12 +11,14 @@ const chartOptions = {
   scales: {
     yAxes: [{
       ticks: {
+        display:false,
         beginAtZero: true,
         fontColor: 'white'
       },
     }],
     xAxes: [{
       ticks: {
+        display:false,
         fontColor: 'white'
       },
     }]
@@ -121,6 +123,7 @@ export default function TabStatisticsCountry() {
     }
   }, [clickedCountry.country]);
 
+
   const onSelectMonth = (e: any) => {
     setSelectedMonth(e.target.value);
   }
@@ -178,7 +181,7 @@ export default function TabStatisticsCountry() {
       </select>
 
       <CountryChart countryStats={countryStats} selectedMonth={selectedMonth} />
-    </div>}
 
+    </div>}
   </div>);
 }

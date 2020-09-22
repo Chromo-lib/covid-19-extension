@@ -28,6 +28,27 @@ const tabs = [
   { id: 3, name: 'about', icon: tabsIcons[3] }
 ];
 
+function SwitchTab({ currentTabId, allCountries, defaultCountries }: any) {
+  switch (currentTabId) {
+    case 1:
+      return <Suspense fallback={<div>Loading...</div>}>
+        <TabWorld allCountries={allCountries} tabName="world" />
+      </Suspense>
+
+    case 2:
+      return <Suspense fallback={<div>Loading...</div>}><TabGlobal /></Suspense>
+
+    case 3:
+      return <Suspense fallback={<div>Loading...</div>}><TabAbout /></Suspense>
+
+    case 100:
+      return <Suspense fallback={<div>Loading...</div>}><TabStatisticsCountry /></Suspense>
+
+    default:
+      return <TabHome defaultCountries={defaultCountries} tabName="home" />
+  }
+}
+
 function App() {
 
   const { globalState, setGloablState }: any = useContext(GlobalContext);
@@ -61,16 +82,16 @@ function App() {
           {tab.icon}{tab.name}</li>)}
       </ul>
 
-      <Suspense fallback={<div>Loading...</div>}>
-        {globalState.allCountries.length > 0
-          && (globalState.currentTabId === 0
-            ? <TabHome defaultCountries={globalState.defaultCountries} tabName="home" />
-            : globalState.currentTabId === 1
-              ? <TabWorld allCountries={globalState.allCountries} tabName="world" />
-              : globalState.currentTabId === 2 ? <TabGlobal /> :
-                globalState.currentTabId === 3
-                  ? <TabAbout /> : <TabStatisticsCountry />)}
-      </Suspense>
+      {globalState.allCountries.length > 0 && <SwitchTab
+        currentTabId={globalState.currentTabId}
+        defaultCountries={globalState.defaultCountries}
+        allCountries={globalState.allCountries} tabName="world"
+      />}
+
+      <footer>
+        <p className="m-0 fs-10">Created by <a href="https://github.com/haikelfazzani" className="txt-yellow">Haikel Fazzani</a></p>
+        <button></button>
+      </footer>
     </div>
   );
 }

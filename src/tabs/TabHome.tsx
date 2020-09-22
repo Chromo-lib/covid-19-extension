@@ -25,12 +25,11 @@ function TabHome({ defaultCountries }: any) {
         </div>
       </div>
 
-      <p className="w-100 d-flex fs-12">
+      <p className="w-100 fs-10 m-0">
         <span>Last update | </span>
         <span>{new Date().toString().slice(0, 15)} | </span>
         <span>{milliToTime(defaultCountries[0].updated)}</span>
-      </p>
-      <p className="m-0 fs-12">WE HOPE YOU ARE STAYING HEALTHY AND SAFE.</p>
+      </p>      
     </header>
 
     <HeaderInlineList />
