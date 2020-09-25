@@ -345,8 +345,14 @@ img {
 
 /***********************************************/
 footer {
-  padding: 10px;
+  align-items: center;
+  padding: 3px 10px;  
 }
+footer p {font-size: 8px !important;}
+
+footer > div {    display: flex; cursor: pointer; padding: 2px 5px; }
+footer > div svg {   margin: 0 !important;}
+footer > div:hover {    background-color: var(--light-dark);}
 /*****************************/
 .tabs,
 header,

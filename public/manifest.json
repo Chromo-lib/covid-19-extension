@@ -1,7 +1,7 @@
 {
   "name": "CovidNow",
   "version": "1.0.6",
-  "description": "CovidNow allows you to track the world-wide spread of Corona virus.",
+  "description": "CovidNow allows you to follow the global spread of the Corona virus.",
   "manifest_version": 2,
   "permissions": [
     "storage"

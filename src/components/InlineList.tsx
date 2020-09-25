@@ -53,11 +53,7 @@ export default function InlineList({ children, data }: any) {
   const { globalState, setGloablState }: any = useContext(GlobalContext);
   const [clickedCountry, setClickedCountry]: any = useState('');
   const ctxMenuRef: any = useRef(null);
-  const [dragState, setDragState] = useState({
-    isDragIn: false,
-    selectedLi: null,
-    placeholder: null
-  });
+  const [dragState, setDragState] = useState({ isDragIn: false, selectedLi: null, placeholder: null });
 
   const onClickCountry = (cdCounttry: string) => {
     setGloablState({ ...globalState, clickedCountry: cdCounttry, currentTabId: 100 })

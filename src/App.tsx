@@ -1,15 +1,9 @@
-import React, { useEffect, Suspense, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
+import Footer from './components/Footer';
 import CovidService from './CovidService';
 import { GlobalContext } from './state/GlobalState';
-
-import TabHome from './tabs/TabHome';
-
+import SwitchTabs from './tabs/SwitchTab';
 import { commarize } from './utils/FormatNum';
-
-const TabGlobal = React.lazy(() => import('./tabs/TabGlobal'));
-const TabWorld = React.lazy(() => import('./tabs/TabWorld'));
-const TabStatisticsCountry = React.lazy(() => import('./tabs/TabStatisticsCountry'));
-const TabAbout = React.lazy(() => import('./tabs/TabAbout'));
 
 let chrome: any = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
   ? (window as any).chrome : (window as any).browser;
@@ -27,27 +21,6 @@ const tabs = [
   { id: 2, name: 'global', icon: tabsIcons[2] },
   { id: 3, name: 'about', icon: tabsIcons[3] }
 ];
-
-function SwitchTab({ currentTabId, allCountries, defaultCountries }: any) {
-  switch (currentTabId) {
-    case 1:
-      return <Suspense fallback={<div>Loading...</div>}>
-        <TabWorld allCountries={allCountries} tabName="world" />
-      </Suspense>
-
-    case 2:
-      return <Suspense fallback={<div>Loading...</div>}><TabGlobal /></Suspense>
-
-    case 3:
-      return <Suspense fallback={<div>Loading...</div>}><TabAbout /></Suspense>
-
-    case 100:
-      return <Suspense fallback={<div>Loading...</div>}><TabStatisticsCountry /></Suspense>
-
-    default:
-      return <TabHome defaultCountries={defaultCountries} tabName="home" />
-  }
-}
 
 function App() {
 
@@ -82,16 +55,14 @@ function App() {
           {tab.icon}{tab.name}</li>)}
       </ul>
 
-      {globalState.allCountries.length > 0 && <SwitchTab
-        currentTabId={globalState.currentTabId}
-        defaultCountries={globalState.defaultCountries}
-        allCountries={globalState.allCountries} tabName="world"
-      />}
+      {globalState.allCountries.length > 0
+        && <SwitchTabs
+          currentTabId={globalState.currentTabId}
+          defaultCountries={globalState.defaultCountries}
+          allCountries={globalState.allCountries} tabName="world"
+        />}
 
-      <footer>
-        <p className="m-0 fs-10">Created by <a href="https://github.com/haikelfazzani" className="txt-yellow">Haikel Fazzani</a></p>
-        <button></button>
-      </footer>
+      <Footer />
     </div>
   );
 }
