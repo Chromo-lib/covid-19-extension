@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderInlineList from '../components/HeaderInlineList';
-import InlineList from '../components/InlineList';
+import ListCountries from '../components/ListCountries';
 import milliToTime from '../utils/milliToTime';
 
 import MedMaskImg from '../assets/medical-mask.svg';
@@ -35,7 +35,7 @@ function TabHome({ defaultCountries }: any) {
     <HeaderInlineList />
 
     <div className="w-100 mxw-4 mb-10">
-      <InlineList data={defaultCountries} />
+      <ListCountries data={defaultCountries} />
     </div>
   </div>
 }

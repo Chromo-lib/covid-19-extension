@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import HeaderInlineList from '../components/HeaderInlineList';
-import InlineList from '../components/InlineList';
+import ListCountries from '../components/ListCountries';
 
 function TabWorld({ allCountries }: any) {
   const [slicedCountries, setSlicedCountries] = useState(allCountries.slice(0, 20));
@@ -36,7 +36,7 @@ function TabWorld({ allCountries }: any) {
   }
 
   return <div className="w-100 content">
-    <div className="w-100 d-flex col-3 p-10">
+    <div className="w-100 d-flex p-10">
       <input type="search"
         name="country"
         onChange={onSearch}
@@ -44,29 +44,29 @@ function TabWorld({ allCountries }: any) {
         placeholder="Search by country name.."
       />
 
-<div className="bg-white">
-<svg xmlns="http://www.w3.org/2000/svg" width="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
-</svg>
-</div>
+      <div className="sort-select">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" fill="none" viewBox="0 0 24 24" stroke="black">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+        </svg>
 
-      <select name="sort" onChange={onSortBy} value={sortVal}>
-        <option value="cases">Sort by cases</option>
-        <option value="deaths">Sort by deaths</option>
-        <option value="recovered">Sort by recovered</option>
-        <option value="todayCases">Sort by today cases</option>
-        <option value="todayDeaths">Sort by today deaths</option>
-        <option value="todayRecovered">Sort by today recovered</option>
-      </select>
+        <select name="sort" onChange={onSortBy} value={sortVal}>
+          <option value="cases">cases</option>
+          <option value="deaths">deaths</option>
+          <option value="recovered">recovered</option>
+          <option value="todayCases">today cases</option>
+          <option value="todayDeaths">today deaths</option>
+          <option value="todayRecovered">today recovered</option>
+        </select>
+      </div>
 
     </div>
     <HeaderInlineList />
 
-    <InlineList data={slicedCountries}>
+    <ListCountries data={slicedCountries}>
       <div className="w-100 p-10">
         <button type="button" onClick={onLoadMore}>Load more</button>
       </div>
-    </InlineList>
+    </ListCountries>
   </div>
 }
 

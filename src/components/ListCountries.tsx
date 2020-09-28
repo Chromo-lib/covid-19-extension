@@ -1,8 +1,8 @@
 import React, { forwardRef, useContext, useRef, useState } from 'react';
 import { FormatNum } from '../utils/FormatNum';
-import './InlineList.css';
 import { GlobalContext } from '../state/GlobalState';
 import LocalDefaultCountries from '../utils/LocalDefaultCountries';
+import './ListCountries.css';
 
 const ContextMenu = forwardRef(({ clickedCountry }: any, ref: any) => {
   const { globalState, setGloablState }: any = useContext(GlobalContext);

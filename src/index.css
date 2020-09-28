@@ -90,13 +90,19 @@ ul {
   padding: 0;
 }
 
-input {
-  padding: 10px;
+.sort-select {
+  position: relative;
 }
 
-select {
-  padding: 10px 10px;
+.sort-select>svg{position: absolute; left: 5px; top: 35%;}
+
+input {
+  padding: 10px;
+  background-color: #ffffff;
+  width: 100%;
 }
+
+select {padding: 10px 20px; background-color: #ffffff;}
 
 select,
 input[type="search"] {
