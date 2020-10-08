@@ -3,11 +3,9 @@ import LocalDefaultCountries from "./utils/LocalDefaultCountries";
 export default class CovidService {
 
   static async allCountries() {
-    const BASE_URL = 'https://corona.lmao.ninja/v3/covid-19/countries';
 
     try {
-      let resp = await fetch(BASE_URL);
-      let respJson = await resp.json();
+      let respJson = await this.fetchAllCountries();
       if (respJson && respJson.message) {
         throw respJson.message;
       }
@@ -24,6 +22,20 @@ export default class CovidService {
         defaultCountries,
         respJson.sort((i: any, j: any) => j.cases - i.cases)
       ];
+    } catch (error) { }
+  }
+
+  static async fetchAllCountries() {
+    const BASE_URL = 'https://corona.lmao.ninja/v3/covid-19/countries';
+
+    try {
+      let resp = await fetch(BASE_URL);
+      let respJson = await resp.json();
+      if (respJson && respJson.message) {
+        throw respJson.message;
+      }
+
+      return respJson;
     } catch (error) { }
   }
 
@@ -73,7 +85,10 @@ export default class CovidService {
     try {
       let resp = await fetch(BASE_URL);
       let respJson = await resp.json();
-      return respJson;
+      if (respJson.Message === 'Caching in progress') {
+        return null;
+      }
+      else return respJson.Global;
     } catch (error) { }
   }
 

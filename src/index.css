@@ -1,12 +1,11 @@
 :root {
   /* --dark: #101213;
   --light-dark: #2b2929cb; */
-  --dark: #252446;
-  --light-dark: #3e3c61bd;
-
+  --dark: #23222f;
+  --light-dark: #424154bd;
   --white: #ffffff;
-  --black:#000;
-  --dark-blue: #1b1744;
+  --black: #000;
+  --dark-blue: #302f42;
   --blue: #5347ff;
   --light-blue: #474b7b;
 
@@ -16,23 +15,6 @@
   --muted: #c4c4c4;
 
   --dark-beige:#4c4c4c;
-  --hover: rgba(255, 255, 255, 0.055);
-}
-
-html[data-theme='light'] {
-  --dark: #e2e2e2;
-  --light-dark: #c9c9c9;
-
-  --white: #181717;
-  --black:rgb(255, 255, 255);
-  --dark-blue: #f5f5f5;
-  --blue: #d4d4d4;
-  --light-blue: #d1d1d1;
-  
-  --yellow:#696969;
-  --muted: #c4c4c4;
-
-  --dark-beige:#cccccc;
   --hover: rgba(255, 255, 255, 0.055);
 }
 
@@ -181,6 +163,11 @@ button:hover {
   color: var(--yellow) !important;
 }
 
+.txt-muted {
+  color: var(--muted) !important;
+}
+
+
 .txt-red {
   color: var(--red);
 }
@@ -309,7 +296,7 @@ button:hover {
 }
 
 .active-tab {
-  background-color: var(--light-blue);
+  background-color: var(--light-dark) !important;
 }
 
 img {
@@ -349,16 +336,13 @@ img {
   cursor: default !important;
 }
 
+.disp-none {display: none; }
 /***********************************************/
 footer {
   align-items: center;
-  padding: 3px 10px;  
+  padding: 5px 10px;  
 }
 footer p {font-size: 8px !important;}
-
-footer > div {    display: flex; cursor: pointer; padding: 2px 5px; }
-footer > div svg {   margin: 0 !important;}
-footer > div:hover {    background-color: var(--light-dark);}
 /*****************************/
 .tabs,
 header,
@@ -429,5 +413,5 @@ footer {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--light-blue);
+  background: var(--hover);
 }

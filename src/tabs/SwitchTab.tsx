@@ -3,7 +3,6 @@ import TabHome from '../tabs/TabHome';
 const TabGlobal = React.lazy(() => import('../tabs/TabGlobal'));
 const TabWorld = React.lazy(() => import('../tabs/TabWorld'));
 const TabStatisticsCountry = React.lazy(() => import('../tabs/TabStatisticsCountry'));
-const TabAbout = React.lazy(() => import('../tabs/TabAbout'));
 
 export default function SwitchTab({ currentTabId, allCountries, defaultCountries }: any) {
   switch (currentTabId) {
@@ -14,9 +13,6 @@ export default function SwitchTab({ currentTabId, allCountries, defaultCountries
 
     case 2:
       return <Suspense fallback={<div>Loading...</div>}><TabGlobal /></Suspense>
-
-    case 3:
-      return <Suspense fallback={<div>Loading...</div>}><TabAbout /></Suspense>
 
     case 100:
       return <Suspense fallback={<div>Loading...</div>}><TabStatisticsCountry /></Suspense>

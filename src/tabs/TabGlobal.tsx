@@ -23,13 +23,16 @@ const chartOptions = {
   }
 }
 
+
 export default function TabGlobal() {
 
-  const [state, setState]: any = useState({ globalStats: null, chartDataTotal: null });
+  const [state, setState]: any = useState({
+    globalStats: null, chartDataTotal: null, allCountries: null
+  });
 
   useEffect(() => {
-    Promise.all([CovidService.summury(), CovidService.statsByContents()])
-      .then(([{ Global }, continents]) => {
+    Promise.all([CovidService.summury(), CovidService.statsByContents(), CovidService.fetchAllCountries()])
+      .then(([globalStats, continents, allCountries]) => {
 
         let chartDataTotal = {
           labels: continents.map((c: any) => c.continent),
@@ -61,21 +64,77 @@ export default function TabGlobal() {
           ]
         };
 
-        setState({ globalStats: Global, chartDataTotal });
+        setState({ globalStats, chartDataTotal, allCountries });
+
+        let r = (allCountries as any).reduce((a: any, c: any) => {
+          if (c.countryInfo && c.countryInfo["iso2"]) {
+            a[c.countryInfo["iso2"]] = c;
+          }
+          return a
+        }, {});
+
+        new (window as any).svgMap({
+          targetElementID: 'svgMap',
+          data: {
+            data: {
+              cases: {
+                name: 'cases',
+                format: '{0}',
+                thousandSeparator: ',',
+                thresholdMax: 50000,
+                thresholdMin: 1000
+              },
+              active: {
+                name: 'active',
+                format: '{0}'
+              },
+              critical: {
+                name: 'critical',
+                format: '{0}'
+              },
+              deaths: {
+                name: 'deaths',
+                format: '{0}'
+              },
+              recovered: {
+                name: 'recovered',
+                format: '{0}'
+              },
+              todayCases: {
+                name: 'new cases',
+                format: '{0}'
+              },
+              todayDeaths: {
+                name: 'new deaths',
+                format: '{0}'
+              },
+              todayRecovered: {
+                name: 'new recovered',
+                format: '{0}'
+              }
+            },
+            applyData: 'cases',
+            values: r
+          }
+        });
       })
       .catch(err => { });
   }, []);
 
   return <div className="w-100 content p-10">
-    <h3 className="mt-0 fs-14">Global Statistics</h3>
-    {state.globalStats && <ul className="w-100 d-flex flex-wrap">
-      {Object.keys(state.globalStats).map((r: any) => <li key={r}
-        style={{ width: '50%', border: '1px solid #4e4e4e' }}
-        className="d-flex-col p-10 fs-14">
-        <span>{SplitUpper(r)}</span>
-        <span>{FormatNum(state.globalStats[r])}</span>
-      </li>)}
-    </ul>}
+
+    <div id="svgMap" className={"w-100 " + (state.allCountries ? "" : "disp-none")}></div>
+
+    {state.globalStats && <div className="w-100 mt-10">
+      <ul className="w-100 d-flex flex-wrap">
+        {Object.keys(state.globalStats).map((r: any) => <li key={r}
+          style={{ width: '50%', border: '1px solid #4e4e4e' }}
+          className="d-flex-col p-10 fs-14">
+          <span>{SplitUpper(r)}</span>
+          <span>{FormatNum(state.globalStats[r])}</span>
+        </li>)}
+      </ul>
+    </div>}
 
     {state.chartDataTotal && <div className="w-100 mt-10">
       <h3 className="mt-0 fs-14">Global Statistics By Continent</h3>

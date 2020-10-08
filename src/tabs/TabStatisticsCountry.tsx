@@ -11,14 +11,14 @@ const chartOptions = {
   scales: {
     yAxes: [{
       ticks: {
-        display:false,
+        display:true,
         beginAtZero: true,
         fontColor: 'white'
       },
     }],
     xAxes: [{
       ticks: {
-        display:false,
+        display:true,
         fontColor: 'white'
       },
     }]
