@@ -23,10 +23,9 @@ const chartOptions = {
   }
 }
 
-
 export default function TabGlobal() {
 
-  const [state, setState]: any = useState({
+  const [state, setState] = useState({
     globalStats: null, chartDataTotal: null, allCountries: null
   });
 
@@ -35,29 +34,29 @@ export default function TabGlobal() {
       .then(([globalStats, continents, allCountries]) => {
 
         let chartDataTotal = {
-          labels: continents.map((c: any) => c.continent),
+          labels: continents.map((c) => c.continent),
           datasets: [
             {
               label: 'Cases',
-              data: continents.map((c: any) => c.cases),
+              data: continents.map((c) => c.cases),
               backgroundColor: backgroundColor[1],
               borderColor: borderColor[1]
             },
             {
               label: 'Recovered',
-              data: continents.map((c: any) => c.recovered),
+              data: continents.map((c) => c.recovered),
               backgroundColor: backgroundColor[3],
               borderColor: borderColor[3]
             },
             {
               label: 'Deaths',
-              data: continents.map((c: any) => c.deaths),
+              data: continents.map((c) => c.deaths),
               backgroundColor: backgroundColor[0],
               borderColor: borderColor[0]
             },
             {
               label: 'Active',
-              data: continents.map((c: any) => c.active),
+              data: continents.map((c) => c.active),
               backgroundColor: backgroundColor[2],
               borderColor: borderColor[2]
             }
@@ -66,14 +65,14 @@ export default function TabGlobal() {
 
         setState({ globalStats, chartDataTotal, allCountries });
 
-        let r = (allCountries as any).reduce((a: any, c: any) => {
+        let r = allCountries.reduce((a, c) => {
           if (c.countryInfo && c.countryInfo["iso2"]) {
             a[c.countryInfo["iso2"]] = c;
           }
           return a
         }, {});
 
-        new (window as any).svgMap({
+        new window.svgMap({
           targetElementID: 'svgMap',
           data: {
             data: {
@@ -127,7 +126,7 @@ export default function TabGlobal() {
 
     {state.globalStats && <div className="w-100 mt-10">
       <ul className="w-100 d-flex flex-wrap">
-        {Object.keys(state.globalStats).map((r: any) => <li key={r}
+        {Object.keys(state.globalStats).map((r) => <li key={r}
           style={{ width: '50%', border: '1px solid #4e4e4e' }}
           className="d-flex-col p-10 fs-14">
           <span>{SplitUpper(r)}</span>

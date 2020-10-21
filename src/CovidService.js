@@ -12,15 +12,15 @@ export default class CovidService {
 
       let countriesNames = LocalDefaultCountries.get();
       let defaultCountries = countriesNames
-        .map(v => respJson.find((k: any) => k.country.toLowerCase().startsWith(v)));
+        .map(v => respJson.find((k) => k.country.toLowerCase().startsWith(v)));
 
       if (defaultCountries.length < 1) {
-        defaultCountries = respJson.filter((c: any) => c.country.toLowerCase().startsWith('tunisia'));
+        defaultCountries = respJson.filter((c) => c.country.toLowerCase().startsWith('tunisia'));
       }
 
       return [
         defaultCountries,
-        respJson.sort((i: any, j: any) => j.cases - i.cases)
+        respJson.sort((i, j) => j.cases - i.cases)
       ];
     } catch (error) { }
   }
@@ -39,17 +39,17 @@ export default class CovidService {
     } catch (error) { }
   }
 
-  static async statsByCountry(countryName: string) {
-    const url: string = 'https://api.covid19api.com/total/dayone/country/' + countryName;
+  static async statsByCountry(countryName) {
+    const url = 'https://api.covid19api.com/total/dayone/country/' + countryName;
     try {
-      let countryStats: any = await fetch(url);
+      let countryStats = await fetch(url);
       countryStats = await countryStats.json();
 
-      let isLastDay = (dt: Date) => {
+      let isLastDay = (dt) => {
         return new Date(dt.getTime() + 86400000).getDate() === 1;
       }
 
-      return countryStats.reduce((result: any, country: any) => {
+      return countryStats.reduce((result, country) => {
         let date = new Date(country.Date);
         let lastMonth = new Date().getMonth();
 

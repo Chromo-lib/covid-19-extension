@@ -4,17 +4,17 @@ import { GlobalContext } from '../state/GlobalState';
 import LocalDefaultCountries from '../utils/LocalDefaultCountries';
 import './ListCountries.css';
 
-const ContextMenu = forwardRef(({ clickedCountry }: any, ref: any) => {
-  const { globalState, setGloablState }: any = useContext(GlobalContext);
+const ContextMenu = forwardRef(({ clickedCountry }, ref) => {
+  const { globalState, setGloablState } = useContext(GlobalContext);
   const { tabName, allCountries, defaultCountries } = globalState;
 
-  const onAction = (actionType: string) => {
+  const onAction = (actionType) => {
     const { country } = clickedCountry;
     switch (actionType) {
       case 'add':
-        let isN = defaultCountries.some((cnt: any) => cnt.country === country);
+        let isN = defaultCountries.some((cnt) => cnt.country === country);
         if (!isN) {
-          let nd = allCountries.find((cnt: any) => cnt.country === country);
+          let nd = allCountries.find((cnt) => cnt.country === country);
           setGloablState({ ...globalState, defaultCountries: [...defaultCountries, nd], currentTabId: 0, tabName: 'home' });
           LocalDefaultCountries.add(country);
         }
@@ -24,7 +24,7 @@ const ContextMenu = forwardRef(({ clickedCountry }: any, ref: any) => {
         break;
 
       case 'remove':
-        let ndd = defaultCountries.filter((cnt: any) => cnt.country !== country);
+        let ndd = defaultCountries.filter((cnt) => cnt.country !== country);
         setGloablState({ ...globalState, defaultCountries: ndd, currentTabId: 0, tabName: 'home' });
         LocalDefaultCountries.remove(country);
         break;
@@ -48,18 +48,18 @@ const ContextMenu = forwardRef(({ clickedCountry }: any, ref: any) => {
   </ul>
 });
 
-export default function InlineList({ children, data }: any) {
+export default function InlineList({ children, data }) {
 
-  const { globalState, setGloablState }: any = useContext(GlobalContext);
-  const [clickedCountry, setClickedCountry]: any = useState('');
-  const ctxMenuRef: any = useRef(null);
+  const { globalState, setGloablState } = useContext(GlobalContext);
+  const [clickedCountry, setClickedCountry] = useState('');
+  const ctxMenuRef = useRef(null);
   const [dragState, setDragState] = useState({ isDragIn: false, selectedLi: null, placeholder: null });
 
-  const onClickCountry = (cdCounttry: string) => {
+  const onClickCountry = (cdCounttry) => {
     setGloablState({ ...globalState, clickedCountry: cdCounttry, currentTabId: 100 })
   }
 
-  const onContextMenu = (event: any, cdCounttry: any) => {
+  const onContextMenu = (event, cdCounttry) => {
     event.preventDefault();
     if (ctxMenuRef && ctxMenuRef.current) {
       setClickedCountry(cdCounttry);
@@ -79,21 +79,21 @@ export default function InlineList({ children, data }: any) {
     window.addEventListener("click", clickAway);
   }
 
-  const onDragStart = (event: any) => {
+  const onDragStart = (event) => {
     event.dataTransfer.dropEffect = 'move';
     event.dataTransfer.setData("text", event.currentTarget.dataset.id);
     event.currentTarget.classList.add('bg-light-bleu');
     setDragState({ ...dragState, selectedLi: event.currentTarget });
   }
 
-  const onDragOver = (event: any) => {
+  const onDragOver = (event) => {
     event.preventDefault();
   }
 
-  const onDrop = (event: any) => {
+  const onDrop = (event) => {
     event.preventDefault();
 
-    (dragState.selectedLi as any).classList.remove('bg-light-bleu');
+    dragState.selectedLi.classList.remove('bg-light-bleu');
 
     let data = event.dataTransfer.getData("text");
     let placeholder = event.currentTarget.dataset.id;
@@ -104,13 +104,13 @@ export default function InlineList({ children, data }: any) {
     nd[data] = tmp;
 
     setGloablState({ ...globalState, defaultCountries: nd });
-    LocalDefaultCountries.replace(nd.map((c: any) => c.country.toLowerCase()));
+    LocalDefaultCountries.replace(nd.map((c) => c.country.toLowerCase()));
   }
 
   return (<div className="w-100">
     <ul className="inline-list">
 
-      {data.map((details: any, i: number) => <li key={'c' + i}
+      {data.map((details, i) => <li key={'c' + i}
         onClick={() => { onClickCountry(details) }}
         title={details.country}
         data-id={i}

@@ -1,10 +1,11 @@
 {
   "name": "CovidNow",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "CovidNow allows you to follow the global spread of the Corona virus.",
   "manifest_version": 2,
   "permissions": [
-    "storage"
+    "<all_urls>",
+    "https://*/"
   ],
   "icons": {
     "256": "icons/icon256.png",
@@ -16,5 +17,6 @@
     "default_title": "CovidNow",
     "default_popup": "index.html",
     "default_icon": "icons/icon32.png"
-  }
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'" 
 }

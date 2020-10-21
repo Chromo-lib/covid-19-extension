@@ -1,10 +1,10 @@
-const localID: string = 'default-countries-name';
+const localID = 'default-countries-name';
 
 export default class LocalDefaultCountries {
 
-  static add(countryName: string) {
+  static add(countryName) {
     countryName = countryName.toLowerCase();
-    let countriesNames: any = this.get();
+    let countriesNames = this.get();
     if (!countriesNames.includes(countryName)) {
       countriesNames.push(countryName);
       localStorage.setItem(localID, JSON.stringify(countriesNames));
@@ -12,8 +12,8 @@ export default class LocalDefaultCountries {
     return countriesNames;
   }
 
-  static get(): Array<string> {
-    let local: any = localStorage.getItem(localID);
+  static get() {
+    let local = localStorage.getItem(localID);
     if (local) {
       local = JSON.parse(local);
       return local;
@@ -21,14 +21,14 @@ export default class LocalDefaultCountries {
     return [];
   }
 
-  static remove(countryName: string) {
+  static remove(countryName) {
     countryName = countryName.toLowerCase();
-    let nCountries: any = this.get().filter((c: string) => !c.startsWith(countryName));
+    let nCountries = this.get().filter((c) => !c.startsWith(countryName));
     localStorage.setItem(localID, JSON.stringify(nCountries));
     return nCountries;
   }
 
-  static replace(nCountries: Array<string>) {
+  static replace(nCountries) {
     localStorage.setItem(localID, JSON.stringify(nCountries));
   }
 }

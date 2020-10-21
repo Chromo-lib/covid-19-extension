@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import HeaderInlineList from '../components/HeaderInlineList';
 import ListCountries from '../components/ListCountries';
 
-function TabWorld({ allCountries }: any) {
+function TabWorld({ allCountries }) {
   const [slicedCountries, setSlicedCountries] = useState(allCountries.slice(0, 20));
   const [slicePer, setSlicePer] = useState(20);
 
@@ -14,11 +14,11 @@ function TabWorld({ allCountries }: any) {
     setSlicedCountries(allCountries.slice(0, slicePer + 20));
   }
 
-  const onSearch = (e: any) => {
+  const onSearch = (e) => {
     let val = e.target.value.toLowerCase();
     setCountryName(val);
 
-    let nCountries = allCountries.filter((a: any) => a.country.toLowerCase().includes(val));
+    let nCountries = allCountries.filter((a) => a.country.toLowerCase().includes(val));
 
     if (nCountries && nCountries.length > 0) {
       setSlicedCountries(nCountries.slice(0, slicePer + 20));
@@ -28,10 +28,10 @@ function TabWorld({ allCountries }: any) {
     }
   }
 
-  const onSortBy = (e: any) => {
+  const onSortBy = (e) => {
     let val = e.target.value;
     setSortVal(val);
-    let nCountries = allCountries.sort((i: any, j: any) => j[val] - i[val]).slice(0, slicePer);
+    let nCountries = allCountries.sort((i, j) => j[val] - i[val]).slice(0, slicePer);
     setSlicedCountries(nCountries);
   }
 

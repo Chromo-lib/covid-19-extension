@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
 
-let GlobalContext: any = createContext(null);
+let GlobalContext = createContext(null);
 
 const initState = {
   currentTabId: 0,
@@ -10,8 +10,8 @@ const initState = {
   tabName: 'home'
 };
 
-function GlobalStateProvider({ children }: any) {
-  const [globalState, setGloablState]: any = useState(initState);
+function GlobalStateProvider({ children }) {
+  const [globalState, setGloablState] = useState(initState);
   return (<GlobalContext.Provider value={{ globalState, setGloablState }}>
     {children}
   </GlobalContext.Provider>);

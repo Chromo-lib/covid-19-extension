@@ -25,9 +25,9 @@ const chartOptions = {
   }
 }
 
-const CountryChart = ({ countryStats, selectedMonth }: any) => {
+const CountryChart = ({ countryStats, selectedMonth }) => {
 
-  const [state, setState]: any = useState(null);
+  const [state, setState] = useState(null);
 
   useEffect(() => {
     if (selectedMonth !== 100 && countryStats[selectedMonth]) {
@@ -44,28 +44,28 @@ const CountryChart = ({ countryStats, selectedMonth }: any) => {
     }
     else {
       setState({
-        labels: Object.keys(countryStats).map((r: any) => EnglishMonths[r]),
+        labels: Object.keys(countryStats).map((r) => EnglishMonths[r]),
         datasets: [{
           label: 'Confirmed ',
-          data: Object.values(countryStats).map((r: any) => r.Confirmed),
+          data: Object.values(countryStats).map((r) => r.Confirmed),
           backgroundColor: backgroundColor[1],
           borderColor: borderColor[1]
         },
         {
           label: 'Deaths ',
-          data: Object.values(countryStats).map((r: any) => r.Deaths),
+          data: Object.values(countryStats).map((r) => r.Deaths),
           backgroundColor: backgroundColor[0],
           borderColor: borderColor[0]
         },
         {
           label: 'Active ',
-          data: Object.values(countryStats).map((r: any) => r.Active),
+          data: Object.values(countryStats).map((r) => r.Active),
           backgroundColor: backgroundColor[2],
           borderColor: borderColor[2]
         },
         {
           label: 'Recovered ',
-          data: Object.values(countryStats).map((r: any) => r.Recovered),
+          data: Object.values(countryStats).map((r) => r.Recovered),
           backgroundColor: backgroundColor[3],
           borderColor: borderColor[3]
         }]
@@ -83,7 +83,7 @@ const CountryChart = ({ countryStats, selectedMonth }: any) => {
   </>
 }
 
-const CountryInfos = ({ clickedCountry }: any) => {
+const CountryInfos = ({ clickedCountry }) => {
   return <div className="w-100">
     <ul className="w-100 d-flex col-4 fs-10" style={{ flexWrap: 'wrap' }}>
       <li className="d-flex-col bg-bleu"><span>country</span><span>{clickedCountry.country}</span></li>
@@ -107,11 +107,11 @@ const CountryInfos = ({ clickedCountry }: any) => {
 
 export default function TabStatisticsCountry() {
 
-  const { globalState, setGloablState }: any = useContext(GlobalContext);
+  const { globalState, setGloablState } = useContext(GlobalContext);
   const { clickedCountry, allCountries, defaultCountries } = globalState;
 
-  const [countryStats, setCountryStats]: any = useState(null);
-  const [selectedMonth, setSelectedMonth]: any = useState(100);
+  const [countryStats, setCountryStats] = useState(null);
+  const [selectedMonth, setSelectedMonth] = useState(100);
 
   useEffect(() => {
     if (clickedCountry) {
@@ -124,17 +124,17 @@ export default function TabStatisticsCountry() {
   }, [clickedCountry.country]);
 
 
-  const onSelectMonth = (e: any) => {
+  const onSelectMonth = (e) => {
     setSelectedMonth(e.target.value);
   }
 
-  const onAddOrRemove = (actionType: string) => {
+  const onAddOrRemove = (actionType) => {
     const { country } = clickedCountry;
     switch (actionType) {
       case 'add':
-        let isN = defaultCountries.some((cnt: any) => cnt.country === country);
+        let isN = defaultCountries.some((cnt) => cnt.country === country);
         if (!isN) {
-          let nd = allCountries.find((cnt: any) => cnt.country === country);
+          let nd = allCountries.find((cnt) => cnt.country === country);
           setGloablState({ ...globalState, defaultCountries: [...defaultCountries, nd], currentTabId: 0, tabName: 'home' });
           LocalDefaultCountries.add(country);
         }
@@ -146,7 +146,7 @@ export default function TabStatisticsCountry() {
       case 'remove':
         let c = window.confirm("Are you sure to remove? " + country);
         if (c) {
-          let ndd = defaultCountries.filter((cnt: any) => cnt.country !== country);
+          let ndd = defaultCountries.filter((cnt) => cnt.country !== country);
           setGloablState({ ...globalState, defaultCountries: ndd, currentTabId: 0, tabName: 'home' });
           LocalDefaultCountries.remove(country);
         }
@@ -175,7 +175,7 @@ export default function TabStatisticsCountry() {
     {countryStats && <div className="w-100 py-10">
       <select className="w-100" name="months" onChange={onSelectMonth}>
         <option value={100}>Choose a month</option>
-        {Object.keys(countryStats).map((k: any) => <option key={k} value={k}>
+        {Object.keys(countryStats).map((k) => <option key={k} value={k}>
           {EnglishMonths[k]}
         </option>)}
       </select>

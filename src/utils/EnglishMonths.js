@@ -1,4 +1,4 @@
-const EnglishMonths: Array<string> = [
+const EnglishMonths = [
   'January',
   'February',
   'March',
