@@ -1,11 +1,11 @@
 :root {
   /* --dark: #101213;
   --light-dark: #2b2929cb; */
-  --dark: #23222f;
-  --light-dark: #424154bd;
+  --dark:#1a1a1d;
+  --light-dark: #252525bd;
   --white: #ffffff;
   --black: #000;
-  --dark-blue: #302f42;
+  --dark-blue: #323135;
   --blue: #5347ff;
   --light-blue: #474b7b;
 
@@ -20,7 +20,7 @@
 
 @font-face {
   font-family: 'Open Sans';
-  src: url(OpenSans-Regular.ttf);
+  src: url(assets/OpenSans-Regular.ttf);
 }
 
 * {
@@ -31,6 +31,7 @@
 
 body {
   width: 425px;
+  min-height: 250px;
   margin: 0;
   background-color: var(--dark);
   color: var(--white);
@@ -43,6 +44,8 @@ body {
   overflow-x: hidden;
   scrollbar-width: thin;
 }
+
+#root,.App {height: 100%; width:100%;}
 
 .container,
 header {
@@ -93,7 +96,7 @@ input[type="search"] {
 }
 
 button {
-  width: 100%;
+  background-color: var(--white);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -150,6 +153,8 @@ button:hover {
 .align-center {
   align-items: center !important;
 }
+
+.text-uppercase {text-transform: uppercase;}
 
 .txt-left {
   text-align: left;
@@ -276,7 +281,11 @@ button:hover {
 }
 
 .mt-0 {
-  margin-top: 0px;
+  margin-top: 0;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
 }
 
 .mr-10 {

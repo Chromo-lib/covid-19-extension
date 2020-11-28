@@ -1,8 +1,8 @@
 import React from 'react';
 import TabHome from './TabHome';
-import TabGlobal from './TabGlobal';
+import TabGlobal from './tabGlobal/TabGlobal';
 import TabWorld from './TabWorld';
-import TabStatisticsCountry from './TabStatisticsCountry';
+import TabStatisticsCountry from './statistics/TabStatisticsCountry';
 
 export default function SwitchTab({ currentTabId, allCountries, defaultCountries }) {
   switch (currentTabId) {

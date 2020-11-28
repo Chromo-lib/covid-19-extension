@@ -1,29 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import CovidService from '../CovidService';
-import { FormatNum } from '../utils/FormatNum';
-import SplitUpper from '../utils/SplitUpper';
-import { Bar } from 'react-chartjs-2';
-import { backgroundColor, borderColor } from '../utils/ChartColors';
+import React, { Suspense, lazy,useState, useEffect } from 'react';
+import { backgroundColor, borderColor } from '../../utils/ChartColors';
+import Spinner from '../../components/Spinner';
+import CovidService from '../../CovidService';
 
-const chartOptions = {
-  scales: {
-    yAxes: [{
-      stacked: true,
-      ticks: {
-        beginAtZero: true
-      }
-    }],
-    xAxes: [{
-      stacked: true,
-      ticks: {
-        beginAtZero: true
-      }
-    }]
+const InfosGlobal = lazy(() => import('./InfosGlobal'));
+const ChartGlobal = lazy(() => import('./ChartGlobal'));
 
-  }
-}
-
-export default function TabGlobal() {
+export default function TabGlobal () {
 
   const [state, setState] = useState({
     globalStats: null, chartDataTotal: null, allCountries: null
@@ -121,28 +104,11 @@ export default function TabGlobal() {
   }, []);
 
   return <div className="w-100 content p-10">
-
     <div id="svgMap" className={"w-100 " + (state.allCountries ? "" : "disp-none")}></div>
 
-    {state.globalStats && <div className="w-100 mt-10">
-      <ul className="w-100 d-flex flex-wrap">
-        {Object.keys(state.globalStats).map((r) => <li key={r}
-          style={{ width: '50%', border: '1px solid #4e4e4e' }}
-          className="d-flex-col p-10 fs-14">
-          <span>{SplitUpper(r)}</span>
-          <span>{FormatNum(state.globalStats[r])}</span>
-        </li>)}
-      </ul>
-    </div>}
-
-    {state.chartDataTotal && <div className="w-100 mt-10">
-      <h3 className="mt-0 fs-14">Global Statistics By Continent</h3>
-      <Bar
-        data={state.chartDataTotal}
-        height={300}
-        legend={{ labels: { fontColor: "white" } }}
-        options={chartOptions}
-      />
-    </div>}
+    <Suspense fallback={<Spinner />}>
+      <InfosGlobal globalStats={state.globalStats} />
+      <ChartGlobal chartDataTotal={state.chartDataTotal} />
+    </Suspense>
   </div>
 }

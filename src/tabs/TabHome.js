@@ -24,7 +24,7 @@ function TabHome({ defaultCountries }) {
       <p className="w-100 fs-10 m-0">
         <span>Last update | </span>
         <span>{new Date().toString().slice(0, 15)} | </span>
-        <span>{milliToTime(defaultCountries[0].updated)}</span>
+        {defaultCountries && defaultCountries[0] && <span>{milliToTime(defaultCountries[0].updated)}</span>}
       </p>      
     </header>
 

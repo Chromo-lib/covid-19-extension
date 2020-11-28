@@ -64,7 +64,7 @@ function TabWorld({ allCountries }) {
 
     <ListCountries data={slicedCountries}>
       {slicedCountries.length > 19 && <div className="w-100 p-10">
-        <button type="button" onClick={onLoadMore}>Load more</button>
+        <button className="w-100" type="button" onClick={onLoadMore}>Load more</button>
       </div>}
     </ListCountries>
   </div>

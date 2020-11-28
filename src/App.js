@@ -1,9 +1,12 @@
-import React, { useEffect, useContext } from 'react';
+import React, { Suspense, useEffect, useContext } from 'react';
 import Footer from './components/Footer';
+import Spinner from './components/Spinner';
 import CovidService from './CovidService';
 import { GlobalContext } from './state/GlobalState';
-import SwitchTabs from './tabs/SwitchTab';
+
 import { commarize } from './utils/FormatNum';
+
+const SwitchTabs = React.lazy(() => import('./tabs/SwitchTab'));
 
 let chrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
   ? window.chrome : window.browser;
@@ -20,7 +23,7 @@ const tabs = [
   { id: 2, name: 'global', icon: tabsIcons[2] }
 ];
 
-function App() {
+function App () {
 
   const { globalState, setGloablState } = useContext(GlobalContext);
 
@@ -53,12 +56,15 @@ function App() {
           {tab.icon}{tab.name}</li>)}
       </ul>
 
-      {globalState.allCountries.length > 0
-        && <SwitchTabs
-          currentTabId={globalState.currentTabId}
-          defaultCountries={globalState.defaultCountries}
-          allCountries={globalState.allCountries} tabName="world"
-        />}
+      <Suspense fallback={<Spinner />}>
+        {globalState.allCountries.length > 0
+          ? <SwitchTabs
+            currentTabId={globalState.currentTabId}
+            defaultCountries={globalState.defaultCountries}
+            allCountries={globalState.allCountries} tabName="world"
+          />
+          : <Spinner />}
+      </Suspense>
 
       <Footer />
     </div>
