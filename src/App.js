@@ -1,12 +1,13 @@
 import React, { Suspense, useEffect, useContext } from 'react';
-import Footer from './components/Footer';
+import { GlobalContext } from './state/GlobalState';
+
 import Spinner from './components/Spinner';
 import CovidService from './CovidService';
-import { GlobalContext } from './state/GlobalState';
 
 import { commarize } from './utils/FormatNum';
 
 const SwitchTabs = React.lazy(() => import('./tabs/SwitchTab'));
+const Footer = React.lazy(() => import('./components/Footer'));
 
 let chrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
   ? window.chrome : window.browser;
@@ -64,9 +65,9 @@ function App () {
             allCountries={globalState.allCountries} tabName="world"
           />
           : <Spinner />}
-      </Suspense>
 
-      <Footer />
+        <Footer />
+      </Suspense>
     </div>
   );
 }
