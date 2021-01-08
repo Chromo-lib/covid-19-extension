@@ -48,7 +48,7 @@ const ContextMenu = forwardRef(({ clickedCountry }, ref) => {
   </ul>
 });
 
-export default function InlineList({ children, data }) {
+export default function ListCountries ({ children, data, noDrag }) {
 
   const { globalState, setGloablState } = useContext(GlobalContext);
   const [clickedCountry, setClickedCountry] = useState('');
@@ -80,10 +80,12 @@ export default function InlineList({ children, data }) {
   }
 
   const onDragStart = (event) => {
-    event.dataTransfer.dropEffect = 'move';
-    event.dataTransfer.setData("text", event.currentTarget.dataset.id);
-    event.currentTarget.classList.add('bg-light-bleu');
-    setDragState({ ...dragState, selectedLi: event.currentTarget });
+    if (!noDrag) {
+      event.dataTransfer.dropEffect = 'move';
+      event.dataTransfer.setData("text", event.currentTarget.dataset.id);
+      event.currentTarget.classList.add('bg-light-bleu');
+      setDragState({ ...dragState, selectedLi: event.currentTarget });
+    }
   }
 
   const onDragOver = (event) => {
@@ -92,19 +94,20 @@ export default function InlineList({ children, data }) {
 
   const onDrop = (event) => {
     event.preventDefault();
+    if (!noDrag) {
+      dragState.selectedLi.classList.remove('bg-light-bleu');
 
-    dragState.selectedLi.classList.remove('bg-light-bleu');
+      let data = event.dataTransfer.getData("text");
+      let placeholder = event.currentTarget.dataset.id;
 
-    let data = event.dataTransfer.getData("text");
-    let placeholder = event.currentTarget.dataset.id;
+      let nd = globalState.defaultCountries.slice(0);
+      let tmp = nd[placeholder];
+      nd[placeholder] = nd[data];
+      nd[data] = tmp;
 
-    let nd = globalState.defaultCountries.slice(0);
-    let tmp = nd[placeholder];
-    nd[placeholder] = nd[data];
-    nd[data] = tmp;
-
-    setGloablState({ ...globalState, defaultCountries: nd });
-    LocalDefaultCountries.replace(nd.map((c) => c.country.toLowerCase()));
+      setGloablState({ ...globalState, defaultCountries: nd });
+      LocalDefaultCountries.replace(nd.map((c) => c.country.toLowerCase()));
+    }
   }
 
   return (<div className="w-100">

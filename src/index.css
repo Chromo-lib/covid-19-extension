@@ -1,16 +1,17 @@
 :root {
   /* --dark: #101213;
   --light-dark: #2b2929cb; */
-  --dark:#1a1a1d;
+  --dark:#1d1d1d;
   --light-dark: #252525bd;
   --white: #ffffff;
   --black: #000;
-  --dark-blue: #323135;
+  --dark-blue: #363636;
   --blue: #5347ff;
   --light-blue: #474b7b;
 
   --red:#d91023;
   --yellow:#ffeb3b;
+  --orange:#ff9800 ;
   --green:#00f108;
   --muted: #c4c4c4;
 
@@ -30,7 +31,7 @@
 }
 
 body {
-  width: 425px;
+  width: 440px;
   min-height: 250px;
   margin: 0;
   background-color: var(--dark);
@@ -305,7 +306,11 @@ button:hover {
 }
 
 .active-tab {
-  background-color: var(--light-dark) !important;
+  color: var(--orange) !important;
+}
+
+.active-tab > svg path {
+  fill: var(--orange) !important;
 }
 
 img {
@@ -361,17 +366,19 @@ footer {
 }
 
 .tabs li {
+  color: var(--muted);
+  font-weight: 600;
   height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
   line-height: 35px;
-  font-size: 10px;
+  font-size: 11px;
   border-right: 1px solid var(--light-dark);
   transition: background-color .25s;
 }
 
-.tabs li svg path {fill: var(--white);}
+.tabs li svg path {fill: var(--muted);}
 
 .tabs li:last-child {
   border-right: none;

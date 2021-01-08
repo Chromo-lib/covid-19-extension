@@ -62,9 +62,9 @@ function TabWorld({ allCountries }) {
     </div>
     <HeaderInlineList />
 
-    <ListCountries data={slicedCountries}>
+    <ListCountries data={slicedCountries} noDrag={true}>
       {slicedCountries.length > 19 && <div className="w-100 p-10">
-        <button className="w-100" type="button" onClick={onLoadMore}>Load more</button>
+        <button className="w-100" type="button" onClick={onLoadMore}>Load More</button>
       </div>}
     </ListCountries>
   </div>
