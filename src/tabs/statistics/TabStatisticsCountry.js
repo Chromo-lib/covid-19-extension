@@ -43,7 +43,7 @@ export default function TabStatisticsCountry() {
       let nd = allCountries.find((cnt) => cnt.country === country);
       setGloablState({
         ...globalState,
-        defaultCountries: [...defaultCountries, nd], currentTabId: 0, tabName: 'home'
+        defaultCountries: [nd, ...defaultCountries], currentTabId: 0, tabName: 'home'
       });
       LocalDefaultCountries.add(country);
     }
@@ -64,8 +64,8 @@ export default function TabStatisticsCountry() {
     </Suspense>
 
     {countryStats && <div className="w-100 py-10">
-      <select className="w-100" name="months" onChange={onSelectMonth}>
-        <option value={100}>Choose a month</option>
+      <select className="w-100 uppercase" name="months" onChange={onSelectMonth}>
+        <option value={100}>all months</option>
         {Object.keys(countryStats).map((k) => <option key={k} value={k}>{EnglishMonths[k]}</option>)}
       </select>
 

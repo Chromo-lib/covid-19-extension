@@ -1,18 +1,17 @@
 :root {
   --dark:#444444;
-  --light: #c2c2c2;
+  --light: #ddd;
   --white: #ffffff;
   --black: #000;
-  --blue: #5347ff;
-
+  --blue: rgb(29, 155, 240);
   --red:#d91023;
   --yellow:#ffeb3b;
   --orange:#ff9800 ;
   --green:#00f108;
-  --muted: #b6b6b6;
-
+  --muted: #919191;
   --dark-beige:#4c4c4c;
   --hover: rgba(255, 255, 255, 0.055);
+  --shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
 * {
@@ -59,6 +58,8 @@ h3 {
 p,
 label {
   font-size: 14px;
+  margin: 0;
+  font-size: .75rem;
 }
 
 ul {
@@ -90,6 +91,8 @@ input[type="search"] {
 }
 
 button {
+  background: #ffffff;
+  border: 1px solid #ddd;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,8 +101,7 @@ button {
   font-weight: 600;
   letter-spacing: .6px;
   line-height: 24px;
-  padding: 4px 14px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  padding: 4px 14px;  
   outline: none !important;
   cursor: pointer;
   transition: all .25s;
@@ -152,7 +154,7 @@ button:hover {
 }
 
 .txt-bleu {
-  color: #00BCD4;
+  color: var(--blue);
 }
 
 .txt-yellow {
@@ -176,8 +178,10 @@ button:hover {
   color: var(--white);
 }
 
-.bg-red {
-  background-color: #da0000 !important;
+.uppercase {text-transform: uppercase;}
+
+.border-bottom-red {
+  border-bottom:1px solid #da0000 !important;
 }
 
 .bg-dark {
@@ -198,18 +202,19 @@ button:hover {
   color: var(--white);
 }
 
-.bg-green {
-  background-color: #0da000;
-  color: var(--white);
+.border-bottom-green {
+  border-bottom:1px solid var(--green) !important;  
 }
 
 
 .col-4>* {
   flex: 1 1 25%;
   height: 50px;
-  border: 1px solid var(--muted);
+  border-bottom: 1px solid var(--light);
   padding: 5px;
 }
+
+.col-4 span {color: var(--muted);}
 
 .col-3>* {
   width: 33.3%;
@@ -353,7 +358,7 @@ footer {
   align-items: center;
   padding: 5px 10px;  
 }
-footer p {font-size: 9px !important;}
+footer p {font-size: 9px !important; }
 /*****************************/
 .tabs,
 header {
@@ -361,7 +366,7 @@ header {
 }
 
 .tabs li {
-  color: var(--muted);
+  color: var(--light);
   font-weight: 600;
   height: 35px;
   display: flex;
@@ -373,7 +378,7 @@ header {
   transition: background-color .25s;
 }
 
-.tabs li svg path {fill: var(--muted);}
+.tabs li svg path {fill: var(--light);}
 
 .tabs li:last-child {
   border-right: none;

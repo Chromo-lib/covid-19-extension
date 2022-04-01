@@ -1,12 +1,10 @@
 import React, { Suspense, useEffect, useContext } from 'react';
 import { GlobalContext } from './state/GlobalState';
-
 import Spinner from './components/Spinner';
 import CovidService from './CovidService';
-
 import { commarize } from './utils/FormatNum';
 
-const SwitchTabs = React.lazy(() => import('./tabs/SwitchTab'));
+const SwitchTabs = React.lazy(() => import('./SwitchTab'));
 const Footer = React.lazy(() => import('./components/Footer'));
 
 let chrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
@@ -38,9 +36,9 @@ function App () {
           defaultCountries: countries[0]
         });
 
-        chrome.browserAction.setBadgeText({ text: '+' + commarize(countries[0][0].todayCases) });
+        chrome.action.setBadgeText({ text: '+' + commarize(countries[0][0].todayCases) });
       })
-      .catch(e => { });
+      .catch(e => { console.log(e); });
   }, []);
 
   const onTabChange = (currentTabId) => {

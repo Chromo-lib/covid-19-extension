@@ -100,4 +100,10 @@ export default class CovidService {
       return respJson;
     } catch (error) { }
   }
+
+  static async vaccineByCountry(country) {
+    const response = await fetch('https://disease.sh/v3/covid-19/vaccine/coverage/countries/' + country)
+    const data = await response.json();
+    return data.timeline;
+  }
 }

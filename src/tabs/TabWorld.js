@@ -10,6 +10,7 @@ function TabWorld({ allCountries }) {
   const [sortVal, setSortVal] = useState('');
 
   const onLoadMore = () => {
+    console.log(slicedCountries);
     setSlicePer(slicePer + 20);
     setSlicedCountries(allCountries.slice(0, slicePer + 20));
   }

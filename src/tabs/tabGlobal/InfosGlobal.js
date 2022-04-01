@@ -9,10 +9,10 @@ export default function InfosGlobal ({ globalStats }) {
         {Object.keys(globalStats).map((r) => {
           if (r !== "Date") {
             return <li key={r}
-              style={{ width: '50%', border: '1px solid #4e4e4e' }}
+              style={{ width: '50%', border: '1px solid #ddd' }}
               className="d-flex-col p-10 fs-14">
-              <span>{SplitUpper(r)}</span>
-              <span>{FormatNum(globalStats[r])}</span>
+              <small className='txt-muted'>{SplitUpper(r)}</small>
+              <p className='mt-10'>{FormatNum(globalStats[r])}</p>
             </li>
           }
         })}
