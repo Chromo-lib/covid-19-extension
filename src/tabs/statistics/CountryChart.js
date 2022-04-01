@@ -1,28 +1,33 @@
 import React, { useState, useEffect } from 'react';
+import { Chart as ChartJS, registerables } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import Spinner from '../../components/Spinner';
 import { backgroundColor, borderColor } from '../../utils/ChartColors';
 import EnglishMonths from '../../utils/EnglishMonths';
+ChartJS.register(...registerables);
 
 const chartOptions = {
   scales: {
-    yAxes: [{
+    y: {
       ticks: {
-        display:true,
+        display: true,
         beginAtZero: true,
         fontColor: 'white'
       },
-    }],
-    xAxes: [{
+    },
+    x: {
       ticks: {
-        display:true,
+        display: true,
         fontColor: 'white'
       },
-    }]
+      gridLines: {
+        color: 'white'
+      }
+    }
   }
 }
 
-export default function CountryChart ({ countryStats, selectedMonth }) {
+export default function CountryChart({ countryStats, selectedMonth }) {
 
   const [state, setState] = useState(null);
 

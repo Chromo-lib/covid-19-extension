@@ -1,14 +1,13 @@
 {
   "name": "covidnow",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "private": true,
   "dependencies": {
-    "chart.js": "^2.9.4",
+    "chart.js": "^3.0.0",
     "react": "^17.0.1",
-    "react-chartjs-2": "^2.11.1",
+    "react-chartjs-2": "^4.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.1",
-    "web-vitals": "^0.2.4"
+    "react-scripts": "5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

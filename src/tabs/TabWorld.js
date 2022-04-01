@@ -38,6 +38,7 @@ function TabWorld({ allCountries }) {
   return <div className="w-100 content">
     <div className="w-100 d-flex p-10">
       <input type="search"
+      className='mr-10'
         name="country"
         onChange={onSearch}
         value={countryName}

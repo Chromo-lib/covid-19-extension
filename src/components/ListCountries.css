@@ -47,10 +47,10 @@
 .ctx-menu {
   display: inline-block;
   position: absolute;
-  background-color: var(--dark-beige) !important;
+  background-color: var(--dark) !important;
   text-align: left;
   color: var(--white);
-  font-size: 9px;
+  font-size: 10px;
   z-index: 9999;
   transform: scale(1);
   transition: transform 300ms ease-in-out;
@@ -60,17 +60,17 @@
 
 .ctx-menu::before {
   content:"\A";
-    border-style: solid;
-    border-width: 10px 15px 10px 0;
-    border-color: transparent var(--dark-beige) transparent transparent;
-    position: absolute;
-    left: -15px;
+  border-style: solid;
+  border-width: 10px 15px 10px 0;
+  border-color: transparent var(--dark) transparent transparent;
+  position: absolute;
+  left: -15px;
 }
 
 .ctx-menu li { 
   padding: 5px;
-  border-bottom: 1px solid var(--dark);
-  border-left: 1px solid var(--dark);
+  border-bottom: 1px solid var(--light);
+  border-left: 1px solid var(--light);
 }
 
 .ctx-menu li:last-child { 

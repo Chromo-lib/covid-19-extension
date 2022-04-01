@@ -1,7 +1,7 @@
 import React from 'react';
 
 const HeaderInlineList = () => (
-  <div className="header-list">
+  <div className="header-list blur">
     <div>
       <span>Country</span>
       <span>flag</span>

@@ -8,7 +8,7 @@ import LocalDefaultCountries from '../../utils/LocalDefaultCountries';
 const CountryChart = lazy(() => import('./CountryChart'));
 const CountryInfos = lazy(() => import('./CountryInfos'));
 
-export default function TabStatisticsCountry () {
+export default function TabStatisticsCountry() {
 
   const { globalState, setGloablState } = useContext(GlobalContext);
   const { clickedCountry, allCountries, defaultCountries } = globalState;
@@ -20,9 +20,15 @@ export default function TabStatisticsCountry () {
     if (clickedCountry) {
       CovidService.statsByCountry(clickedCountry.country)
         .then(resp => {
-          setCountryStats(resp);
+          const currentMonth = +new Date().getMonth();
+          let res = {};
+          Object.keys(resp).map(key => {
+            if(currentMonth+1 > key) res[key] = resp[key]
+          });
+          
+          setCountryStats(res);
         })
-        .catch(err => { });
+        .catch(err => { console.log(err); });
     }
   }, [clickedCountry.country]);
 

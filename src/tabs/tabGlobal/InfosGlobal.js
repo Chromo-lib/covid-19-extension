@@ -4,8 +4,8 @@ import SplitUpper from '../../utils/SplitUpper';
 
 export default function InfosGlobal ({ globalStats }) {
   return <>
-    {globalStats && <div className="w-100 mt-10 mb-10">
-      <ul className="w-100 d-flex flex-wrap">
+    {globalStats && <div className="w-100 mt-10 mb-10 br7">
+      <ul className="w-100 d-flex flex-wrap br7">
         {Object.keys(globalStats).map((r) => {
           if (r !== "Date") {
             return <li key={r}

@@ -26,7 +26,7 @@ export default class CovidService {
   }
 
   static async fetchAllCountries() {
-    const BASE_URL = 'https://corona.lmao.ninja/v3/covid-19/countries';
+    const BASE_URL = 'https://disease.sh/v3/covid-19/countries';
 
     try {
       let resp = await fetch(BASE_URL);
@@ -93,7 +93,7 @@ export default class CovidService {
   }
 
   static async statsByContents() {
-    const BASE_URL = 'https://corona.lmao.ninja/v3/covid-19/continents';
+    const BASE_URL = 'https://disease.sh/v3/covid-19/continents';
     try {
       let resp = await fetch(BASE_URL);
       let respJson = await resp.json();

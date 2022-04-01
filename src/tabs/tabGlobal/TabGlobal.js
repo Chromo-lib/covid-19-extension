@@ -104,7 +104,7 @@ export default function TabGlobal () {
   }, []);
 
   return <div className="w-100 content p-10">
-    <div id="svgMap" className={"w-100 " + (state.allCountries ? "" : "disp-none")}></div>
+    <div id="svgMap" className={"w-100 br7 " + (state.allCountries ? "" : "disp-none")}></div>
 
     <Suspense fallback={<Spinner />}>
       <InfosGlobal globalStats={state.globalStats} />

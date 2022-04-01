@@ -50,7 +50,7 @@ function App () {
   return (
     <div className="App">
 
-      <ul className="tabs d-flex col-3 bg-dark">
+      <ul className="tabs d-flex col-3">
         {tabs.map(tab => <li key={tab.id}
           onClick={() => { onTabChange(tab.id) }}
           className={globalState.currentTabId === tab.id ? 'active-tab' : ''}>

@@ -124,7 +124,7 @@ export default function ListCountries ({ children, data, noDrag }) {
         draggable={globalState.tabName === 'home'}>
 
         <div>
-          <img src={details.countryInfo.flag} alt={details.country} height="35" />
+          <img className='br7' src={details.countryInfo.flag} alt={details.country} height="35" />
         </div>
 
         <div>
